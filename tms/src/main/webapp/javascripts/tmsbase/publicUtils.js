@@ -41,11 +41,24 @@ define(function (require, exports, module) {
 				s = (date.getSeconds() < 10 ? '0'+date.getSeconds(): date.getSeconds());
 				return Y+M+D+h+m+s;
 			}
-	}
+	};
+	var urlAction = {
+			getQueryString: function (name) {
+		        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		        var r = window.location.search.substr(1).match(reg);  //获取url中"?"符后的字符串并正则匹配
+		        var context = "";
+		        if (r != null)
+		            context = r[2];
+		        reg = null;
+		        r = null;
+		        return context == null || context == "" || context == "undefined" ? "" : context;
+		    }
+	};
 	
 	
 
 	exports.getDate=dataAction.getDate;
 	exports.getTime=dataAction.getTime;
 	exports.getLocalTime=dataAction.getLocalTime;
+	exports.getQueryString=urlAction.getQueryString;
 });

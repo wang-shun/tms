@@ -9,6 +9,7 @@ define(function (require, exports, module) {
     require("jqgrid");
     require("bootstrapSuggest");
     var publicUpdate = require("publicUpdate");
+    var publicUtils = require("publicUtils");
     var waybillModal = require("tmsCustomer/waybillModal.js");
     var publicjs = require("publicJs");
     require("datepicker");
@@ -33,6 +34,7 @@ define(function (require, exports, module) {
                 },
                 postData: {
                     "rArea": $("#rArea").val(),
+                    "deliveryNo": $("#deliveryNo").val(),
                     "deliveryStatus": $("#deliveryStatus").val()
                 }, //发送数据
             }).trigger("reloadGrid");
@@ -91,7 +93,11 @@ define(function (require, exports, module) {
     }
 
     $(document).ready(function () {
-
+    	var deliveryNo=publicUtils.getQueryString("deliveryNo");//查看是否页面跳转，有值就说明是页面跳转过来的
+    	if(deliveryNo!=""){
+    		alert(deliveryNo);
+    		$("#deliveryNo").val(deliveryNo);
+    	}
         $.jgrid.defaults.styleUI = 'Bootstrap';
 
         $(window).on('resize.jqGrid', function () {
@@ -113,6 +119,9 @@ define(function (require, exports, module) {
                 page: "data.currpage",
                 records: "data.totalrecords",
                 repeatitems: false
+            },
+            postData: {
+            	"deliveryNo":deliveryNo
             },
             prmNames: {
                 page: "page", // 表示请求页码的参数名称
@@ -379,6 +388,18 @@ define(function (require, exports, module) {
             {
                 afterSubmit: function (response, postdata) {
                     return publicUpdate.afterSubmitDel(response, postdata);
+                }
+            })
+            .navButtonAdd(pager_selector, {
+                caption: " ",
+                buttonicon: "glyphicon-trash",
+                title: '取消预分配',
+                onClickButton: function () {
+                	var ids = $(grid_selector).jqGrid('getGridParam', 'selarrrow');
+                	if(ids.length>=2){
+                		alert("一次只能取消一条数据。");
+                	}
+                    publicUpdate.cancelOrConfirmData(grid_selector, "确认取消分配？", "../../predistribution/cancelPredistribution", null, "运单作废成功");
                 }
             });
 
