@@ -67,6 +67,7 @@ public class PredistributionController {
 		}else{
 			criteria.andDeliveryNoEqualTo(deliveryNo);
 		}
+		aaaa
 		waybillExample.setOrderByClause("UPDATED_AT desc");
 		int pageNumber = 1;
 		int pageSize = 10;
