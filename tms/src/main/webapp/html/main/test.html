@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta content="telephone=no" name="format-detection">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<link href="../../stylesheets/main/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css" />
+<link rel="stylesheet" href="../../stylesheets/main/ace.min.css" />
+<link rel="stylesheet" href="../../stylesheets/Pager.css" />
+<link rel="stylesheet" href="../../stylesheets/modal.css" />
+<title>首页</title>
+</head>
+
+<body>
+<div class="navbar navbar-default" id="navbar">
+  <div class="navbar-container" id="navbar-container">
+    <div class="navbar-header pull-left"> <a href="#" class="navbar-brand"> <small> <i class="icon-leaf"></i> Ace Admin </small> </a> </div>
+  </div>
+</div>
+<div class="main-container" id="main-container">
+  <div class="main-container-inner">
+    <div class="sidebar" id="sidebar">
+      <ul class="nav nav-list" id="nav-list-id">
+        <li class="activeLi pLi" targetSrc=""> <a id="test11" href="javascript:void()" role="button" class="green"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li>
+        <li class="pLi"> <a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i> <span class="menu-text"> UI 组件 </span> </a> </li>
+        <li class="pLi" targetSrc=""> <a href="#" class="dropdown-toggle"> <i class="icon-list"></i> <span class="menu-text"> 表格 </span> <b class="arrow icon-angle-down"></b> </a>
+          <ul class="submenu">
+            <li class="cLi" targetSrc="http://www.baidu.com"> <a href="#" class="menu-text"> 简单 &amp; 动态 </a> </li>
+            <li class="cLi" targetSrc="http://blog.csdn.net/hursing/article/details/9186199"> <a href="#" class="menu-text"> jqGrid plugin </a> </li>
+          </ul>
+        </li>
+        <li class="pLi"> <a href="#" class="dropdown-toggle"> <i class="icon-edit"></i> <span class="menu-text"> 表单 </span> <b class="arrow icon-angle-down"></b> </a>
+          <ul class="submenu">
+            <li class="cLi"> <a href="#"> 简单 &amp; 动态 </a> </li>
+            <li class="cLi"> <a href="#"> jqGrid plugin </a> </li>
+          </ul>
+        </li>
+        <li class="pLi"> <a href="#"> <i class="icon-list-alt"></i> <span class="menu-text"> 插件 </span> </a> </li>
+        <li class="pLi"> <a href="#"> <i class="icon-calendar"></i> <span class="menu-text"> 日历 </span> </a> </li>
+        <li class="pLi"> <a href="#"> <i class="icon-picture"></i> <span class="menu-text"> 相册 </span> </a> </li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <div class="breadcrumbs" id="breadcrumbs">
+        <ul class="breadcrumb">
+          <!-- <li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">Home</a>
+							</li>
+							<li>
+								<a href="#"></a>
+							</li>
+							<li class="active"></li> -->
+        </ul>
+      </div>
+      <div class="page-content">
+        <iframe id="pageFrame" src="" allowtransparency="true" style="background-color=transparent" title="test" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+								<div id="modal-table" class="modal fade" tabindex="-1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header no-padding">
+												<div class="table-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+														<span class="white">&times;</span>
+													</button>
+													人员选择
+												</div>
+											</div>
+
+											<div class="modal-body no-padding">
+                                            	<div class="div-row">
+                                                	<div class="div-item-1 elem-center elem-padding-r" align="right"></div>
+                                                    <div class="div-item-1 elem-center elem-padding-r"><input id="id-modal-seachInput" class="form-control" placeholder="请输入条件"/></div>
+                                                    <div class="div-item-1 elem-center" align="left"><button id="id-modal-btn-seach" type="button" class="btn btn-success">搜索</button></div>
+                                                </div>
+												<table id="id-modal-body-table" class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+													<thead>
+														<tr>
+															<th>Domain</th>
+															<th>Price</th>
+															<th>Clicks</th>
+
+															<th>
+																<i class="icon-time bigger-110"></i>
+																Update
+															</th>
+														</tr>
+													</thead>
+
+													<tbody>
+														<tr>
+															<td>
+																<a href="#">ace.com</a>
+															</td>
+															<td>$45</td>
+															<td>3,330</td>
+															<td>Feb 12</td>
+														</tr>
+
+														<tr>
+															<td>
+																<a href="#">base.com</a>
+															</td>
+															<td>$35</td>
+															<td>2,595</td>
+															<td>Feb 18</td>
+														</tr>
+
+														<tr>
+															<td>
+																<a href="#">max.com</a>
+															</td>
+															<td>$60</td>
+															<td>4,400</td>
+															<td>Mar 11</td>
+														</tr>
+
+														<tr>
+															<td>
+																<a href="#">best.com</a>
+															</td>
+															<td>$75</td>
+															<td>6,500</td>
+															<td>Apr 03</td>
+														</tr>
+
+														<tr>
+															<td>
+																<a href="#">pro.com</a>
+															</td>
+															<td>$55</td>
+															<td>4,250</td>
+															<td>Jan 21</td>
+														</tr>
+													</tbody>
+												</table>
+                                                
+											</div>
+
+											<div class="modal-footer no-margin-top" align="center">
+												<button class="btn btn-sm btn-primary pull-right" data-dismiss="modal">
+													<i class=" icon-check-sign"></i>
+													点击选择
+												</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div><!-- PAGE CONTENT ENDS -->
+</body>
+
+<script type="text/javascript" src="../../javascripts/base/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+	seajs.use("main/index-action")
+</script>
+</html>

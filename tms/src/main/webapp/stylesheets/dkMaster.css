@@ -1,0 +1,156 @@
+@import url(public.css); 
+
+.storeMaster-page{
+}
+
+.sm-right{
+
+    background: #fff;
+}
+.item-note-add{
+	margin:10px 0;
+}
+.item-note-txtarea{
+	margin:5px 0;
+	resize:none;
+}
+
+.ite-edit-btn{
+	background: #6FB3E0 !important;
+	border-color: #6FB3E0 !important;
+	border-radius: 3px;
+}
+.ite-delet-btn{
+	background: #D15B47 !important;
+	border-color: #D15B47 !important;
+	border-radius: 3px;
+}
+
+.set-dk-btn{
+	background: #87B97E !important;
+	border-color: #87B97E !important;
+	border-radius: 3px;
+}
+.set-dish-btn{
+	background: #E59191 !important;
+	border-color: #E59191 !important;
+	border-radius: 3px;
+}
+.lable_style-add {
+	float: left;
+	width: 20%;
+	height: 34px;
+	line-height: 34px;
+	margin: 0 15px 15px 20px;
+	text-align: left;
+}
+.set-dk-tit{
+	display: inline-block;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+.inpt-name{
+	float:left;
+	width:45%;
+}
+.inpt-desc{
+	float:left;
+	width:35%;
+}
+.required {
+	color: red;
+	margin: 8px 6px;
+	float: left;
+}
+.dialog_style{
+	width:900px;
+	height: 80%;
+		display:-moz-box; display:-webkit-box; display:-o-box; display:box;
+-moz-box-orient:vertical; -webkit-box-orient:vertical; -o-box-orient:vertical; box-orient:vertical; 
+}
+.modal-footer{
+	height: 70px;
+}
+.juzhong {
+	left: 50% !important;
+	margin-left: -450px;
+}
+.uperssion-tit{
+	margin:0 15px;
+	font-size: 14px;
+	float:left;
+	line-height: 26px;
+	width:13%;
+	text-align: left;
+}
+input[type=checkbox]{
+	vertical-align: middle;
+	margin:0 2px 0 5px;
+	width:15px;
+	height: 15px;
+}
+.dialog_style form{
+	vertical-align: middle;
+	line-height: 26px;
+}
+.uperssion-right{
+	display: inline-block;
+	float:left;
+	max-width: 83%;
+	line-height: 26px;
+}
+.check-name{
+	margin-right: 10px;
+}
+.modal-body{
+	height: 80%;
+	overflow-y:auto;
+	 -moz-box-flex: 1; 
+    -webkit-box-flex: 1; 
+    box-flex: 1;
+}
+.modal,.modal-dialog{
+	height: 100%;
+
+}
+.set-dish-row{
+	padding: 10px;
+	height: 100%;
+}
+.lock-dish-left{
+	display: inline-block;
+	width:45%;
+	height: 90%;
+	float:left;
+	margin-right: 5%;
+
+}
+.lock-dish-cont-left,.lock-dish-cont-right{
+	width:100%;
+	height: 90%;
+	border:1px solid #ccc;
+	padding:10px;
+	overflow-y:auto;
+}
+input[type="radio"].dk-rt-rad{
+	vertical-align: middle;
+	margin: 0 5px 0 0;
+}
+.lock-dish-tit{
+	margin-bottom: 10px;
+}
+.lock-dish-right{
+	display: inline-block;
+	width:45%;
+	height: 90%;
+	float:left;
+	margin-left: 5%;
+}
+.set-dk-tit-rt{
+	display: block;
+	margin-bottom: 10px;
+	width:100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css?version=0.1.1" >
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../../stylesheets/public.css">
+</head>
+<body class="frame_body">
+<form name="queryCondition" method="post">
+    <div class="tms_body">
+        <div class="tms_row">
+        	<div class="tms_col_4">
+                <label class="tms_lable_style2">发货方</label>
+                <div class="input-group">
+                    <input type="text" class="form-control tms_input_style2" id="dName" name="dName">
+                    <div class="input-group-btn">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tms_col_8">
+            	<label class="tms_lable_style2">月份</label>
+                <input class="form-control tms_input_style2" type="text" id="createdAtMonth" name="createdAtMonth">
+                <div class="button_lable">
+                    <button type="button" id="query" class="btn btn-info tms_button">
+                        <i class="fa fa-search"></i> 查 询
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="jqGrid_wrapper">
+                    <table id="table_list_1"></table>
+                    <div id="pager_list_1"></div>
+                    <div class="tms_col_4">
+	                    <label class="tms_lable_style2">运费单价(元)</label>
+		                <div class="input-group">
+		                    <input type="text" class="form-control tms_input_style2" id="transportFee" name="dName">
+		                </div>
+                	</div>
+                    <div class="button_lable">
+	                    <button type="button" id="saveTransportFee" class="btn btn-info tms_button">
+	                        <i class="fa fa-save"></i> 保 存
+	                    </button>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("financialSettlement/rearTransportFeeSetting")
+</script>
+</body>
+</html>

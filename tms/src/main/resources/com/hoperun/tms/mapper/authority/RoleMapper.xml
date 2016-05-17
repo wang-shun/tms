@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hoperun.tms.mapper.authority.RoleMapper">
+
+	<resultMap type="com.hoperun.tms.bean.authority.Role" id="RoleResultMap">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="createTime" property="create_time" />
+		<result column="createId" property="create_id" />
+	</resultMap>
+
+	<sql id="allColumnFields">
+	      id,name,create_time,create_id
+ 	</sql>	
+ 	
+ 	<sql id="MybatisCmsRole_dynamic_where_fields"><!-- xml转义字符需要 <![CDATA[   ]]> 标签-->
+		<where>
+			<if test="id != null  and id != '' "> AND id=#{id} </if>
+			<if test="name != null  and name != '' "> AND name like concat(concat('%', #{name}),'%') </if>
+		</where>
+ 	</sql>
+
+
+
+	<select id="select" parameterType="com.hoperun.tms.bean.authority.Role" resultMap="RoleResultMap">
+		SELECT
+			<include refid="allColumnFields" />
+		from tms_role p
+			<include refid="MybatisCmsRole_dynamic_where_fields"></include>
+		order by id
+	</select>
+	
+	<delete id="delRoleById">
+		delete from tms_role 
+		where 
+			id = #{id}
+	</delete>
+	
+	<update id="updateRole">
+		update tms_role 
+			set name = #{name}
+			where id = #{id}
+	</update>
+	
+	<insert id="insertRole" parameterType="com.hoperun.tms.bean.authority.Role"  keyProperty="id" useGeneratedKeys="true">
+		<selectKey resultType="INTEGER"  keyProperty="id" order="BEFORE">
+			select seq_tms_role_ID.nextval as id from dual
+		</selectKey>
+        insert into tms_role (id,name,create_time,create_id)
+        values(#{id},#{name},<![CDATA[ sysdate  ]]>,#{createId})
+	</insert>
+	
+	
+</mapper>

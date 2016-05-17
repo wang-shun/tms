@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../../stylesheets/public.css">
+ <title>派车确认</title>
+
+ </head>
+  <body>
+      <div class="frame_body">
+      	<div class="tms_body">
+          <div class="ibox-content">
+              <div class="ibox-content">
+                  <div class="jqGrid_wrapper">
+                      <table id="table_list_1" ></table>
+                      <div id="pager_list_1"></div>
+                  </div>
+              </div>
+          </div>
+         </div>
+      </div>
+  </body>
+
+<input id="modalId" type="hidden">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 710px; padding:15px">
+        <div class="modal-content" style="height:545px;">
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+  seajs.use("TransportationExecution/deliveryBill")
+</script>
+
+</html>

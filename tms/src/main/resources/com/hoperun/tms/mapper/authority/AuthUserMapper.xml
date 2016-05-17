@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hoperun.tms.mapper.authority.AuthUserMapper">
+
+	<resultMap type="com.hoperun.tms.bean.authority.User" id="AuthUserResultMap">
+		<id column="id" property="id" />
+		<result column="login_name" property="login_name" />
+		<result column="password" property="password" />
+		<result column="vsername" property="vsername" />
+		<result column="mobile" property="mobile" />
+		<result column="email" property="email" />
+		<result column="create_time" property="create_time" />
+		<result column="lastLoginTime" property="lastLoginTime" />
+		<result column="lastLoginIp" property="lastLoginIp" />
+	</resultMap>
+	
+	<resultMap type="com.hoperun.tms.bean.authority.UserRole" id="UserRoleResultMap">
+		<id column="id" property="id" />
+		<result column="user_id" property="user_id" />
+		<result column="role_id" property="role_id" />
+	</resultMap>
+
+	<sql id="allColumnFields">
+	      id,login_name,password,vsername,mobile,email,create_time
+ 	</sql>	
+ 	
+ 	<sql id="MybatisCmsUser_dynamic_where_fields"><!-- xml转义字符需要 <![CDATA[   ]]> 标签-->
+		<where>
+			<if test="id != null  and id != '' "> AND id = #{id} </if>
+			<if test="login_name != null  and login_name != '' "> AND login_name = #{login_name} </if>
+		</where>
+ 	</sql>
+
+
+
+	<select id="userIsExists" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		SELECT
+			count(id)
+		from tms_user p
+			<include refid="MybatisCmsUser_dynamic_where_fields"></include>
+		order by id
+	</select>
+	
+	<select id="select" parameterType="com.hoperun.tms.bean.authority.User" resultMap="AuthUserResultMap">
+		SELECT
+			<include refid="allColumnFields" />
+		from TMS_USER p
+			<include refid="MybatisCmsUser_dynamic_where_fields"></include>
+		order by id
+	</select>
+	
+	<select id="getUserRoleList" parameterType="com.hoperun.tms.bean.authority.UserRole" resultMap="UserRoleResultMap">
+		SELECT
+			user_id,role_id
+		from tms_user_role 
+			where user_id = #{user_id}
+		order by id
+	</select>
+	
+	
+	
+	<delete id="delUserById">
+		delete from tms_user 
+		where 
+			id = #{id}
+	</delete>
+	
+	<update id="updateUser">
+		update tms_user 
+			<set>
+					<if test="login_name != null ">login_name=#{login_name},</if>
+					<if test="password != null ">password=#{password},</if>
+					<if test="vsername != null ">vsername=#{vsername},</if>
+					<if test="mobile != null ">mobile=#{mobile},</if>
+					<if test="email != null ">email=#{email}</if>
+		</set>
+			where id = #{id}
+	</update>
+	
+	<update id="updateUserLoginMess">
+		update tms_user 
+		<set>
+			<if test="lastLoginTime != null ">lastLoginTime=#{lastLoginTime},</if>
+			<if test="lastLoginIp != null ">lastLoginIp=#{lastLoginIp}</if>
+		</set>
+			where id = #{id}
+	</update>
+	
+	
+	<insert id="insertUser" parameterType="com.hoperun.tms.bean.authority.User"  keyProperty="id" useGeneratedKeys="true">
+		<selectKey resultType="INTEGER"  keyProperty="id" order="BEFORE">
+			select seq_tms_user_id.nextval as id from dual
+		</selectKey>
+        insert into tms_user (id,login_name,password,vsername,mobile,email,create_time)
+        values(
+        #{id},
+        #{login_name},
+        #{password},
+        #{vsername,jdbcType=VARCHAR},
+        #{mobile,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},
+        <![CDATA[ sysdate  ]]>)
+	</insert>
+	
+		
+	<insert id="insertUserRole" parameterType="java.util.List">
+    
+		INSERT  INTO tms_user_role(
+				id,
+				user_id,
+				role_id
+		)	select SEQ_TMS_USER_ROLE_ID.NEXTVAL,A.* from(	
+		<foreach collection="list" item="item" index="index" separator="union all">
+        	select #{item.user_id},#{item.role_id} from dual
+    	</foreach>
+    	) A
+	</insert>
+	
+	<delete id="delUserRole">
+		delete from tms_user_role 
+		where 
+			user_id = #{user_id}
+	</delete>
+	
+	
+	
+</mapper>

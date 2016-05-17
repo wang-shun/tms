@@ -1,0 +1,72 @@
+.container-page{
+  display:-moz-box; /* Firefox */
+  display:-webkit-box; /* Safari and Chrome */
+  display:box;
+  width:100%;
+  background: white;
+}
+
+.page-left{
+  width:200px;
+}
+
+.page-right{
+  -moz-box-flex:9.0;
+  -webkit-box-flex:9.0;
+  box-flex:9.0;
+}
+
+.row1{
+  width: 100%;
+  float: left;
+  padding:10px 0px 10px 20px;
+}
+
+.span-style{
+  float:left;
+  margin-right: 10px;
+  height:30px;
+  line-height:30px;
+}
+
+.goodprice-div{
+  display: none;
+}
+
+.mealprice-div{
+  display: none;
+}
+
+.input_style1{
+  margin-right: 10px;
+  float:left;
+  width:10%
+}
+
+.ope-btn{
+  margin-left: 15px;
+}
+
+.td-inpt{
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+}
+
+th,td{
+  text-align: center;
+}
+
+
+.page-number,.pgNext{
+  min-width:40px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+}
+
+#pager .pages{
+  overflow:hidden;
+  margin-top:10px
+}
+

@@ -1,0 +1,571 @@
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.hoperun</groupId>
+	<artifactId>shinho_tms</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<properties>
+		<java.version>1.7</java.version>
+		<junit.version>4.10</junit.version>
+		<log4j.version>2.0</log4j.version>
+		<mysql.jdbc.version>5.1.21</mysql.jdbc.version>
+		<oracle.jdbc.version>11.2.0.3</oracle.jdbc.version>
+		<hibernate.version>3.6.9.Final</hibernate.version>
+		<mybatis.version>3.2.8</mybatis.version>
+		<commons.fileupload.version>1.2.1</commons.fileupload.version>
+		<commons.httpclient.version>3.1</commons.httpclient.version>
+		<javassist.version>3.12.1.GA</javassist.version>
+		<cxf.version>3.1.4</cxf.version>
+		<spring.version>4.1.6.RELEASE</spring.version>
+		<jackson.version>2.5.3</jackson.version>
+		<pagehelper.version>3.6.1</pagehelper.version>
+		<commons.pool.version>2.3</commons.pool.version>
+		<zxing.version>3.2.1</zxing.version>
+		<umspay.version>2.0.2</umspay.version>
+		<lombok.version>1.16.4</lombok.version>
+		<shiro.version>1.2.2</shiro.version>
+		<dl210.version>1.0.0.0</dl210.version>
+	</properties>
+	<repositories>
+		<repository>
+			<id>spring-milestone</id>
+			<name>Spring Maven MILESTONE Repository</name>
+			<url>http://repo.springsource.org/libs-milestone</url>
+		</repository>
+		<repository>
+			<id>spring-snapshot</id>
+			<name>Spring Maven SNAPSHOT Repository</name>
+			<url>http://repo.springsource.org/libs-snapshot</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+	<dependency>
+		  <groupId>DL210</groupId>
+		  <artifactId>jna</artifactId>
+		  <version>${dl210.version}</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>DL210</groupId>
+		  <artifactId>tool</artifactId>
+		  <version>${dl210.version}</version>
+	  </dependency>
+	  <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>poi</artifactId>
+             <version>3.11</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>poi-ooxml</artifactId>
+             <version>3.11</version>
+         </dependency>
+	 	<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-quartz</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+		<!-- junit闁革拷 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- c3p0 <dependency> <groupId>com.mchange</groupId> <artifactId>c3p0</artifactId> 
+			<version>0.9.5</version> </dependency> -->
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- cxf -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-core</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		
+		<dependency>  
+        	<groupId>org.springframework.data</groupId>  
+        	<artifactId>spring-data-redis</artifactId>  
+        	<version>1.5.0.RELEASE</version>  
+    	</dependency>
+    	
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-base</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr353</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>${pagehelper.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons.fileupload.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils-core</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>${commons.pool.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>${commons.httpclient.version}</version>
+		</dependency>
+		<!-- log4j闁汇劌瀚欢椋庢導? -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		<!-- oracle -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${oracle.jdbc.version}</version>
+		</dependency>
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.jdbc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<!-- dbcp2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+   		<dependency>
+		  <groupId>com.shinho</groupId>
+		  <artifactId>qrcode</artifactId>
+		  <version>1.0.0.0</version>
+		</dependency>
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- quartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.fernandospr</groupId>
+			<artifactId>javapns-jdk16</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<!--json-lib -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-ext-jdk15on</artifactId>
+			<version>1.52</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.52</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+		
+		<!-- mvn install:install-file -Dfile=umspay-api-2.0.2.jar -DgroupId=com.chinaums -DartifactId=umspay-api -Dversion=2.0.2 -Dpackaging=jar 
+		<dependency>
+			<groupId>com.chinaums</groupId>
+			<artifactId>umspay-api</artifactId>
+			<version>${umspay.version}</version>
+		</dependency>
+		-->
+	</dependencies>
+	
+	<build>
+		<finalName>hoperun</finalName>
+		<plugins>
+			<!-- 编译的时候使用JDK6和UTF8编码 -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+					<compilerArguments>
+						<verbose />
+						<bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<!-- 配置Maven插件(mvn jetty:run可以运行项目) 此处有JSTL包冲突 暂未解决 <plugin> <groupId>org.mortbay.jetty</groupId> 
+				<artifactId>maven-jetty-plugin</artifactId> <version>6.1.24</version> <configuration> 
+				<scanIntervalSeconds>10</scanIntervalSeconds> <stopKey>foo</stopKey> <stopPort>9089</stopPort> 
+				</configuration> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<verbal>true</verbal>
+					<warName>shinho</warName>
+					<!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
+					<failOnMissingWebXml>true</failOnMissingWebXml>
+					<version>3.0</version>
+					<archive>
+						<manifestEntries>
+							<Dependencies>org.bouncycastle</Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<skipTests>false</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<finalName>mobile</finalName>
+					<server>tomcat7</server>
+					<uriEncoding>UTF-8</uriEncoding>
+					<path>/shinho_tms</path>
+					<!-- 在这里定义端口号 -->
+					<port>8080</port>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.5.1</version>
+			</plugin>
+			<plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-antrun-plugin</artifactId> 
+				<version>1.7</version> <executions> <execution> <id>prepare-hbm-copy</id> 
+				<phase>generate-resources</phase> <goals> <goal>run</goal> </goals> <configuration> 
+				<tasks> <copy todir="target/classes/com/kanq/idp/base/business/model" overwrite="true"> 
+				<fileset dir="src/main/java/com/kanq/idp/base/business/model"> <include name="**/*.hbm.xml" 
+				/> </fileset> </copy> <copy todir="target/classes/com/kanq/idp/base/query/entity" 
+				overwrite="true"> <fileset dir="src/main/java/com/kanq/idp/base/query/entity"> 
+				<include name="**/*.hbm.xml" /> </fileset> </copy> <copy todir="target/classes/com/kanq/idp/base/sysmonitor/syslogs/model" 
+				overwrite="true"> <fileset dir="src/main/java/com/kanq/idp/base/sysmonitor/syslogs/model"> 
+				<include name="**/*.hbm.xml" /> </fileset> </copy> <copy todir="target/classes/com/kanq/idp/documentation/model" 
+				overwrite="true"> <fileset dir="src/main/java/com/kanq/idp/documentation/model"> 
+				<include name="**/*.hbm.xml" /> </fileset> </copy> <copy todir="target/classes/com/kanq/idp/base/map/model" 
+				overwrite="true"> <fileset dir="src/main/java/com/kanq/idp/base/map/model"> 
+				<include name="**/*.hbm.xml" /> </fileset> </copy> </tasks> </configuration> 
+				</execution> </executions> </plugin> -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>hibernate3-maven-plugin</artifactId> 
+				<version>2.0-alpha-1</version> <dependencies> <dependency> <groupId>mysql</groupId> 
+				<artifactId>mysql-connector-java</artifactId> <version>5.1.4</version> </dependency> 
+				</dependencies> <configuration> <components> <component> <name>hbm2ddl</name> 
+				<implementation> annotationconfiguration </implementation> </component> </components> 
+				<componentProperties> <drop>true</drop> <jdk5>true</jdk5> <propertyfile> 
+				/src/main/resources/jdbc.properties </propertyfile> <configurationfile> /src/main/resources/hibernate.cfg.xml 
+				</configurationfile> </componentProperties> </configuration> <executions> 
+				<execution> <phase>process-test-resources</phase> <goals> <goal>hbm2ddl</goal> 
+				</goals> </execution> </executions> </plugin> -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>dbunit-maven-plugin</artifactId> 
+				<version>1.0-beta-3</version> <dependencies> <dependency> <groupId>mysql</groupId> 
+				<artifactId>mysql-connector-java</artifactId> <version>5.1.4</version> </dependency> 
+				</dependencies> <configuration> <dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName> 
+				<metadataHandlerName>${dbunit.metadataHandlerName}</metadataHandlerName> 
+				<encoding>utf-8</encoding> <driver>${jdbc.driverClassName}</driver> <url>${jdbc.url}&amp;sessionVariables=foreign_key_checks=0</url> 
+				<username>${jdbc.username}</username> <password>${jdbc.password}</password> 
+				<src>src/test/resources/sample-data.xml</src> <type>${dbunit.operation.type}</type> 
+				</configuration> <executions> -->
+			<!-- 这里设置的 goal 是 process-test-classes，所以当我们在执行 mvn process-test-classes 
+				后会调用这个 dbunit:operation goal。 而当我们执行 mvn test 时，会发现这个 dbunit:operation 会在 
+				test 之前执行，这能也就能为我们准备好单元测试的数据了， 不会因为小动了下数据库而让 test 全线告错 -->
+			<!-- <execution> <phase>process-test-classes</phase> <goals> <goal>operation</goal> 
+				</goals> <configuration> <format>xml</format> <src>src/test/resources/sample-data.xml</src> 
+				<type>CLEAN_INSERT</type> </configuration> </execution> <execution> <id>test-compile</id> 
+				<phase>test-compile</phase> <goals> <goal>operation</goal> </goals> </execution> 
+				<execution> <id>test</id> <phase>test</phase> <goals> <goal>operation</goal> 
+				</goals> </execution> </executions> </plugin> -->
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-antrun-plugin</artifactId>
+										<versionRange>[1.3,)</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+
+</project>  

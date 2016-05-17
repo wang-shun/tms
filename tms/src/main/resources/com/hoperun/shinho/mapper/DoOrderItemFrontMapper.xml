@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.DoOrderItemFrontMapper">
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap"
+		type="com.hoperun.shinho.bean.DoOrderItemFrontEntity">
+		<id column="id" property="id" javaType="java.lang.String" />
+		<result column="order_id" property="order_id" javaType="java.lang.String" />
+		<result column="vbeln" property="vbeln" />
+		<result column="posnr" property="posnr" javaType="java.lang.Integer" />
+		<result column="matnr" property="matnr" />
+		<result column="maktx" property="maktx" />
+		<result column="i_unit_id" property="i_unit_id" />
+		<result column="i_unit_name" property="i_unit_name" />
+		<result column="i_count" property="i_count" javaType="java.lang.Integer" />
+		<result column="price" property="price" javaType="java.lang.Float" />
+		<result column="g_amt" property="g_amt" javaType="java.lang.Float" />
+		<result column="remark" property="remark" />
+		<result column="status" property="status" />
+		<result column="did" property="did" />
+		<result column="insdt" property="insdt" javaType="java.util.Date" />
+		<result column="points_amount" property="points_amount"
+			javaType="java.lang.Integer" />
+		<result column="points_unit_amount" property="points_unit_amount"
+			javaType="java.lang.Integer" />
+		<result column="did" property="did" javaType="java.lang.Integer" />
+	</resultMap>
+
+	<!-- sys_user table all fields -->
+	<sql id="Base_Column_List">
+		id,order_id,vbeln,posnr,matnr,maktx,i_unit_id,i_unit_name,i_count,price,g_amt,remark,pstyv,status,insdt,points_amount,points_unit_amount
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and id = #{id, javaType="java.lang.String"}
+			</if>
+		</trim>
+	</sql>
+
+	<!-- 根据id，修改密码 -->
+	<update id="update" parameterType="Object">
+		update BASE_CTP set
+		password=#{password}
+		where
+		row_wid=#{rowWid}
+	</update>
+
+	<!-- 根据id查询 销售订单明细 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from TEMP_ORDERS where id = #{id}
+	</select>
+
+	<!-- 根据销售订单id查询 销售订单明细 -->
+	<select id="queryByOrderId" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from TEMP_ORDERS where order_id = #{order_id}
+	</select>
+
+	<!-- 根据销售订单id查询 销售订单明细 -->
+	<select id="insertOrderItem" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from TEMP_ORDERS where order_id = #{order_id}
+	</select>
+
+	<!-- 删除记录 -->
+	<delete id="delete" parameterType="Object">
+		delete from TEMP_ORDERS
+		where id = #{id}
+	</delete>
+
+	<insert id="insertBySelective" parameterType="com.hoperun.shinho.bean.DoOrderItemFrontEntity">
+		insert into TEMP_ORDERS
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="order_id != null and order_id != ''">
+				order_id,
+			</if>
+			<if test="vbeln != null and vbeln != ''">
+				vbeln,
+			</if>
+			<if test="posnr != 0">
+				posnr,
+			</if>
+			<if test="matnr != null and matnr != ''">
+				matnr,
+			</if>
+			<if test="maktx != null and maktx != ''">
+				maktx,
+			</if>
+			<if test="i_unit_id != null and i_unit_id != ''">
+				i_unit_id,
+			</if>
+			<if test="i_unit_name != null and i_unit_name != ''">
+				i_unit_name,
+			</if>
+			<if test="i_count != 0">
+				i_count,
+			</if>
+			<if test="price != 0">
+				price,
+			</if>
+			<if test="g_amt != 0">
+				g_amt,
+			</if>
+			<if test="remark != null and remark != ''">
+				remark,
+			</if>
+			<if test="status != null and status != ''">
+				status,
+			</if>
+			<if test="insdt != null and insdt != ''">
+				insdt,
+			</if>
+			<if test="points_amount != 0">
+				points_amount,
+			</if>
+			<if test="points_unit_amount != 0">
+				points_unit_amount,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=VARCHAR},
+			<if test="order_id != null and order_id != ''">
+				#{order_id,jdbcType=VARCHAR},
+			</if>
+			<if test="vbeln != null and vbeln != ''">
+				#{vbeln,jdbcType=VARCHAR},
+			</if>
+			<if test="posnr != 0">
+				#{posnr,jdbcType=NUMERIC},
+			</if>
+			<if test="matnr != null and matnr != ''">
+				#{matnr,jdbcType=VARCHAR},
+			</if>
+			<if test="maktx != null and maktx != ''">
+				#{maktx,jdbcType=VARCHAR},
+			</if>
+			<if test="i_unit_id != null and i_unit_id != ''">
+				#{i_unit_id,jdbcType=VARCHAR},
+			</if>
+			<if test="i_unit_name != null and i_unit_name != ''">
+				#{i_unit_name,jdbcType=VARCHAR},
+			</if>
+			<if test="i_count != 0">
+				#{i_count,jdbcType=NUMERIC},
+			</if>
+			<if test="price != 0">
+				#{price,jdbcType=NUMERIC},
+			</if>
+			<if test="g_amt != 0">
+				#{g_amt,jdbcType=NUMERIC},
+			</if>
+			<if test="remark != null and remark != ''">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null and status != ''">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="insdt != null and insdt != ''">
+				sysdate,
+			</if>
+			<if test="points_amount != 0">
+				#{points_amount,jdbcType=NUMERIC},
+			</if>
+			<if test="points_unit_amount != 0">
+				#{points_unit_amount,jdbcType=NUMERIC},
+			</if>
+		</trim>
+	</insert>
+	
+	
+</mapper>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一米运单列表</title>
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css" >
+    <link rel="stylesheet" href="../../stylesheets/public.css">
+</head>
+<body class="frame_body">
+<form name="queryCondition" method="post">
+    <div class="tms_body">
+        <div class="tms_row">
+            <div class="tms_col_4">
+                <label class="tms_lable_style2">运单号</label>
+                <input class="form-control tms_input_style2" type="text" id="no" name="no">
+            </div>
+            <div class="tms_col_4">
+                <label class="tms_lable_style2">客户订单号</label>
+                <input class="form-control tms_input_style2" type="text" id="orderNo" name="orderNo">
+            </div>
+            <div class="tms_col_4">
+                <label class="tms_lable_style2">发货方</label>
+                <div class="input-group">
+                    <input type="text" class="form-control tms_input_style2" id="dName" name="dName">
+                    <div class="input-group-btn">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tms_col_4">
+                <label class="tms_lable_style2">收货方</label>
+                <div class="input-group">
+                    <input type="text" class="form-control tms_input_style2" id="rName" name="rName">
+                    <div class="input-group-btn">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tms_row">
+            <label class="tms_lable_style2">配送时间</label>
+            <label class="tms_1word_lable_style">从</label>
+            <input class="form-control tms_input_style2" type="text" id="deliveryStartDate" name="deliveryStartDate">
+            <label class="tms_1word_lable_style">至</label>
+            <input class="form-control tms_input_style2" type="text" id="deliveryEndDate" name="deliveryEndDate">
+
+            <div class="button_lable">
+                <button type="button" id="query" class="btn btn-info tms_button">
+                    <i class="fa fa-search"></i>查 询
+                </button>
+                <button type="button" id="print" class="btn btn-info tms_button">
+                    <i class="glyphicon glyphicon-print"></i> 打印单据
+                </button>
+                <button type="button" id="waybillCancel" class="btn tms_button">
+                    <i class="glyphicon glyphicon-trash"></i> 作 废
+                </button>
+            </div>
+        </div>
+
+        <div class="tms_row">
+            <label class="tms_lable_style2">运单状态</label>
+            <div class="tms_checkbox_col">
+                <a class="clear_button btn-info" href="javascript:;" id="clearStatus">不限</a>
+                <label><input type="checkbox" value="10" name="statusGroup">确认</label>
+                <label><input type="checkbox" value="20" name="statusGroup">大车运输</label>
+                <label><input type="checkbox" value="30" name="statusGroup">小车派件</label>
+                <label><input type="checkbox" value="40" name="statusGroup">客户签收</label>
+                <label><input type="checkbox" value="90" name="statusGroup">已作废</label>
+            </div>
+        </div>
+
+        <div class="ibox-content">
+            <div class="jqGrid_wrapper">
+                <table id="table_list_1"></table>
+                <div id="pager_list_1"></div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<input id="modalId" type="hidden">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 710px; padding:15px">
+        <div class="modal-content" style="height:545px;">
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("tmsCustomer/yimiWaybill")
+</script>
+</body>
+</html>

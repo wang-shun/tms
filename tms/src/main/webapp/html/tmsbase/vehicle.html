@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>车辆管理</title>
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css?2">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css" >
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../../stylesheets/public.css?version=0.1.1">
+    <style>
+        select{
+            height: 30px;
+        }
+    </style>
+</head>
+<body class="frame_body">
+<form name="queryCondition" method="post">
+    <div class="tms_body">
+        <div class="tms_row">
+            <div class="tms_col_4">
+                <label class="tms_lable_style2">车牌号</label>
+                <input class="form-control tms_input_style2" type="text" id="vNo" name="vNo">
+            </div>
+            <label class="tms_lable_style2">车辆类型</label>
+            <select class="form-control tms_input_style2" id="vType" name="vtype">
+                <option value="" label="请选择">请选择</option>
+                <option value="1" label="1-大车">1-大车</option>
+                <option value="2" label="2-小车">2-小车</option>
+            </select>
+            <label class="tms_lable_style2">驾驶证类型</label>
+            <select class="form-control tms_input_style2" id="driverType" name="driverType">
+                <option value="" label="请选择">请选择</option>
+                <option value="A1" label="A1">A1</option>
+                <option value="A2" label="A2">A2</option>
+            </select>
+            <label class="tms_lable_style2">状态</label>
+            <select class="form-control tms_input_style2" id="status" name="status">
+                <option value="1" label="1-可用">1-可用</option>
+                <option value="2" label="2-不可用">2-不可用</option>
+                <option value="3" label="3-维修中">3-维修中</option>
+                <option value="X" label="不限">不限</option>
+            </select>
+        </div>
+
+        <div class="tms_row">
+            <label class="tms_lable_style2">登记日期</label>
+            <label class="tms_1word_lable_style">从</label>
+            <input class="form-control tms_input_style2" type="text" id="regStartDate" name="regStartDate">
+            <label class="tms_1word_lable_style">至</label>
+            <input class="form-control tms_input_style2" type="text" id="regEndDate" name="regEndDate">
+
+            <div class="button_lable">
+                <button type="button" id="query" class="btn btn-info tms_button"><i class="fa fa-search"></i>&nbsp&nbsp查&nbsp&nbsp询</button>
+            </div>
+        </div>
+
+        <div class="ibox-content">
+            <div class="jqGrid_wrapper">
+                <table id="table_list_1"></table>
+                <div id="pager_list_1"></div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("tmsbase/vehicle")
+</script>
+</body>
+</html>

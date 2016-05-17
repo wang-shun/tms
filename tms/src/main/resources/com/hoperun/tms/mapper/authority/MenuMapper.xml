@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hoperun.tms.mapper.authority.MenuMapper">
+
+	<resultMap type="com.hoperun.tms.bean.authority.Menu" id="MenuResultMap">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="description" property="description" />
+		<result column="isParent" property="isParent" />
+		<result column="pId" property="pId" />
+		<result column="sn" property="sn" />
+		<result column="url" property="url" />
+		<result column="pClass" property="pClass" />
+	</resultMap>
+
+	<sql id="allColumnFields">
+	      id,name,description,isParent,pId,sn,url,pclass
+ 	</sql>	
+ 	
+ 	<sql id="MybatisCmsMenu_dynamic_where_fields"><!-- xml转义字符需要 <![CDATA[   ]]> 标签-->
+		<where>
+			<if test="id != null  and id != '' "> AND id=#{id} </if>
+			<if test="name != null  and name != '' "> AND name like concat(concat('%', #{name}),'%') </if>
+			<if test="description != null  and description != '' "> AND description like concat(concat('%', #{description}),'%') </if>
+			<if test="isParent != null  and isParent != '' "> AND isParent like concat(concat('%', #{isParent}),'%') </if>
+			<if test="sn != null  and sn != '' "> AND sn like concat(concat('%', #{sn}),'%') </if>
+			<if test="url != null  and url != '' "> AND url like concat(concat('%', #{url}),'%') </if>
+			<if test="pId != null  and pId != '' "> AND pId=#{pId} </if>
+			<if test="pClass != null  and pClass != '' "> AND pClass=#{pClass} </if>
+		</where>
+ 	</sql>
+
+	<select id="select" parameterType="com.hoperun.tms.bean.authority.Menu" resultMap="MenuResultMap">
+		SELECT
+			<include refid="allColumnFields" />
+		from tms_menu p
+			<include refid="MybatisCmsMenu_dynamic_where_fields"></include>
+		order by id
+	</select>
+	
+	<select id="findBySysMenuIds" parameterType="com.hoperun.tms.bean.authority.Menu" resultMap="MenuResultMap">
+		SELECT
+			<include refid="allColumnFields" />
+		from tms_menu p where id in 
+			 <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+			  #{item}  
+			 </foreach>  
+		order by id
+	</select>
+	
+	
+	<update id="update"  parameterType="long">
+		update tms_menu 
+		<set>  
+			<if test="name != null  and name != '' ">name = #{name},</if>
+			<if test="description != null  and description != '' "> description = #{description},</if>
+			<if test="pClass != null  and pClass != '' "> pClass = #{pClass},</if>
+			<if test="url != null  and url != '' ">url = #{url}</if>
+		</set>  
+		where id = #{id}
+	</update>
+	<insert id="add"  parameterType="com.hoperun.tms.bean.authority.Menu"  keyProperty="id" useGeneratedKeys="true">
+		<selectKey resultType="INTEGER"  keyProperty="id" order="BEFORE">
+			select seq_tms_menu_id.nextval as id from dual
+		</selectKey>
+        INSERT INTO tms_menu(
+				id,
+				name,
+				pId,
+				isParent,
+				pClass,	
+				create_time
+		)values(
+				#{id},
+				#{name},
+				#{pId},
+				#{isParent},
+				#{pClass},
+				<![CDATA[ sysdate  ]]>
+		)
+	</insert>
+	
+	<delete id="delAllMenuById">
+		
+	delete from tms_menu where id in (select id from tms_menu connect by prior id = pid start with id = #{id} )
+	</delete>
+	
+	<delete id="delAllMenuInfoByPid">
+		delete from tms_menu where id in (select id from tms_menu connect by prior id = pid start with id = #{id} ) and id != #{id}
+	</delete>
+ 	
+</mapper>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css?version=0.1.1">
+
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css?version=0.1.1">
+
+    <link rel="stylesheet" href="../../stylesheets/demo.css?version=0.1.1">
+
+    <link rel="stylesheet" href="../../stylesheets/public.css?version=0.1.1">
+
+    <link rel="stylesheet" href="../../stylesheets/metroStyle/metroStyle.css?version=0.1.1">
+
+    <link rel="stylesheet" href="../../stylesheets/Pager.css?version=0.1.1">
+ <title>菜单模板管理</title>
+
+ </head>
+  <body>
+    <div class="container-page">
+        <div class="top">
+                     
+              <span class="lable_style7">菜单名称</span>
+              <input id="menuname" type="text" class="form-control input_style1" aria-describedby="basic-addon1" maxlength="20"/>
+          
+              <button href="#" class="btn btn-warning btn-sm top-btn1" id="query">
+                   查 询
+              </button>
+        </div>
+        <div class="middle">
+            <button type="button" class="btn btn-info btn-sm top-btn2" id="add" data-toggle="modal" data-target="#myModal" >
+              新 增
+            </button>
+            <button type="button" class="btn btn-danger btn-sm top-btn2" id="del" >
+              删 除
+            </button>
+        </div>
+              <table class="table table-striped table-bordered table-hover" >
+              <thead>
+                <tr >
+                  <th>选择</th>
+                  <th>菜单编号</th>
+                  <th>菜单名称</th>
+                  <th>操作</th>
+                  
+  
+                </tr>
+              </thead>
+              <tbody id="menu-tb">
+              
+                
+              </tbody>
+            </table>
+        
+    </div>
+      <!-- 新增菜品页面 -->
+    <div class="modal fade" id="myModal_add" role="dialog" aria-labelledby="myModalLabe" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content dialog_style_add juzhongL">
+             <form >  
+                <div class="modal-body">
+                    <div class="row">
+                     
+                           <span class="lable_style">菜单名称</span>
+                        <input id="modal_menuname" type="text" class="form-control input_style4" aria-describedby="basic-addon1" maxlength="20"/>
+                          
+              
+              </div>
+              
+               <div class="row">
+                     
+                        <span class="lable_style">复制菜单</span>
+
+                       <select id="selectmenu" class="form-control input_style1">
+                         <option>无模板</option>
+                         <option>湖滨道菜单</option>
+                         <option>静安寺菜单</option>
+                       </select>
+                          
+              
+              </div>
+              <div class="modal-footer footer">
+                      <button id="add_bnt_confirm" type="button" class="btn btn-primary">确 定</button>
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">取 消</button>
+                  </div>
+              </div>
+            <!-- /.modal-content -->
+          </div> 
+        </div>
+    </div>      
+       <!-- 修改菜品页面 -->
+    <div class="modal fade" id="myModal_modify" role="dialog" aria-labelledby="myModalLabe" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content dialog_style_modify juzhongL">
+             <form >  
+                <div class="modal-body">
+                    <div class="row">
+                     
+                           <span class="lable_style">菜单名称</span>
+                        <input id="modal_menuname" type="text" class="form-control input_style4" aria-describedby="basic-addon1" maxlength="20"/>
+                          
+              
+              </div>
+              
+              <div class="modal-footer footer">
+                      <button id="modify_bnt_confirm" type="button" class="btn btn-primary">确 定</button>
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">取 消</button>
+                  </div>
+              </div>
+            <!-- /.modal-content -->
+          </div> 
+        </div>
+    </div>      
+
+    
+
+  
+   <!-- 菜品详情页面 -->
+    <div class="modal fade" id="myModal_details" role="dialog" aria-labelledby="myModalLabe" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content dialog_style_details juzhongR">
+            
+                <div class="modal-body container">
+                  <div class="sideL">
+                     <ul id="treeDemo" class="ztree" style="width:100%;max-width:100%"></ul> 
+                  </div>
+                  <div class="sideR">
+                    <table class="table table-striped table-bordered table-hover" >
+                      <thead>
+                        <tr>
+                          <th>菜品编号</th>
+                          <th>菜品名称</th>
+                        </tr>
+                      </thead>
+                      <tbody id="details-tb">
+                        
+                      </tbody> 
+                    </table>
+               <div id="pages" class="elem-center"  align="center"></div>
+              
+              <div class="modal-footer footer">
+                      <button id="detail_bnt_confirm" type="button" class="btn btn-primary">确定</button>
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+              </div>
+              </div>
+              </div>
+            <!-- /.modal-content -->
+          </div> 
+        </div>
+    </div>      
+
+    
+
+  </body>
+ <!-- 菜单列表模块 -->
+<script id="menu-list-template" type="text/x-handlebars-template">
+  {{# data}}
+          
+        <tr>
+                 <td class="center">
+                <label>
+                  <input type="checkbox" class="ace" name='chk_list'  value='1' />
+                  <span class="lbl"></span>
+                </label>
+                </td>
+                  <td>{{menuno}}</td>
+                  <td>{{menuname}}({{menucount}})</td>
+                  <td>
+                  <a href="#" class="btn btn-info btn-xs top-btn5 menu_modify" trid="{{id}}">{{menuaction1}}</a> 
+                  <a href="#" class="btn btn-warning btn-xs top-btn5 menu_details" trid="{{id}}">{{menuaction2}}</a>
+                  <a href="#" class="btn  btn-xs top-btn3 menu_configure" trid="{{id}}">{{menuaction3}}</a>
+                  </td>
+        </tr>
+      
+  {{/ data}}
+
+
+</script>
+ <!-- 菜单列表模块 -->
+<script id="details-list-template" type="text/x-handlebars-template">
+  {{# data}}
+          
+        <tr>
+               
+                  <td>{{detailsno}}</td>
+                  <td>{{detailsname}}</td>
+                 
+        </tr>
+      
+  {{/ data}}
+
+
+</script>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+  seajs.use("menuManage/menuManage-action")
+</script>
+</html>

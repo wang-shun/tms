@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.ItemMapper">
+    <!-- Result Map -->
+    <resultMap
+        id="BaseResultMap"
+        type="com.hoperun.shinho.bean.ItemEntity">
+        <id
+            column="matnr"
+            property="id" />
+        <result
+            column="maktx"
+            property="name" />
+        <result
+            column="geo_id"
+            property="regionId" />
+        <result
+            column="label"
+            property="label" />
+        <result
+            column="kondm"
+            property="classify" />
+        <result
+            column="kondm_name"
+            property="classifyName" />
+        <result
+            column="img1"
+            property="imageUrl" />
+        <result
+            column="img2"
+            property="iconUrl" />
+        <result
+            column="img3"
+            property="thumbIconUrl" />
+        <result
+            column="img4"
+            property="descriptionUrl" />
+        <result
+            column="unit_id"
+            property="unitId" />
+        <result
+            column="unit_name"
+            property="unitName" />
+        <result
+            column="price"
+            property="price" />
+        <result
+            column="umrez"
+            property="basicNumber" />
+        <result
+            column="point"
+            property="point" />
+        <result
+            column="sale_status"
+            property="saleStatus" />
+    </resultMap>
+
+    <!-- 基础查询元素 -->
+    <sql id="Base_Column_List">
+        a.matnr, a.maktx, a.geo_id, a.label,
+        a.kondm, b.name as kondm_name, a.img1,
+        a.img2, a.img3, a.img4, a.unit_id,
+        a.unit_name, a.price, a.umrez, a.point, a.sale_status
+    </sql>
+
+    <!-- 商品分类的查询条件 -->
+    <sql id="Classify_Where_Clause">
+        where 1=1
+        <trim suffixOverrides=",">
+            <if test="classify != null and classify != ''">
+                and A.KONDM = #{classify}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 商品地区的查询条件 -->
+    <sql id="Base_Where_Clause">
+        WHERE
+        a.kondm = b.row_id
+        AND
+        a.geo_id = '2619'
+        <trim suffixOverrides=",">
+            <if test="classify != null and classify != ''">
+                AND a.kondm = #{classify}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 根据id查询 系统用户 -->
+    <select
+        id="queryById"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        c_sku_list a,
+        portal_r.base_factory_brand b
+        WHERE
+        a.kondm = b.row_id
+        AND
+        a.geo_id = '2619'
+        AND
+        a.matnr = #{id}
+    </select>
+
+    <!-- 按条件查询所有站点信息 -->
+    <select
+        id="queryByList"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        c_sku_list a,
+        portal_r.base_factory_brand b
+        WHERE
+        a.kondm = b.row_id
+        AND
+        a.geo_id = '2619'
+        AND
+        a.sale_status = '1'
+        ORDER BY
+        a.kondm
+    </select>
+
+    <!-- 根据id查询 商品列表 -->
+    <select
+        id="queryByClassify"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        c_sku_list a,
+        portal_r.base_factory_brand b
+        WHERE
+        a.kondm = b.row_id
+        AND
+        a.kondm = #{classify}
+        AND
+        a.geo_id = '2619'
+        AND
+        a.sale_status = '1'
+        ORDER BY
+        a.kondm
+    </select>
+    
+    <!-- 根据id及地址 查询指定商品库存 -->
+    <select
+        id="queryStockByItem"
+        resultType="java.lang.Integer"
+        parameterType="Object">
+        SELECT
+        nvl(MAX(a.i_count),0)
+        FROM
+        portal_r.STOCK_MATNR a,
+        portal_r.BASE_LGORT_REG b
+        WHERE
+        a.matnr = #{id}
+        AND
+        a.place = b.lgort
+        AND
+        b.region = #{geoId}
+    </select>
+</mapper>

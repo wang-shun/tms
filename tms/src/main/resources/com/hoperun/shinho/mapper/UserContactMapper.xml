@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.UserContactMapper">
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="com.hoperun.shinho.bean.UserContactEntity">
+		<id column="row_id" property="id" />
+		<result column="member_id" property="customerId" />
+        <result column="member_name" property="customerName" />
+		<result column="type_flag" property="isMainAddress" />
+		<result column="ADDR" property="address" />
+		<result column="PROVINCENAME" property="province" />
+		<result column="CITYNAME" property="city" />
+		<result column="COUNTYNAME" property="county" />
+		<result column="NAME" property="contactsName" />
+		<result column="TEL" property="contactsTelephone" />
+		<result column="TYPE" property="contactsType" />
+	</resultMap>
+
+	<!-- table all fields -->
+	<sql id="Base_Column_List">
+		row_id, member_id, name, tel, addr, provincename,
+		cityname, countyname, type_flag
+	</sql>
+    <!-- table all fields -->
+    <sql id="Info_Column_List">
+        a.row_id, a.member_id, b.name as member_name, a.name, a.tel, a.addr, a.provincename,
+        a.cityname, a.countyname, a.type_flag
+    </sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and row_id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				and name = #{name}
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status}
+			</if>
+		</trim>
+	</sql>
+
+
+	<!-- 根据参数插入 -->
+	<insert id="add" parameterType="com.hoperun.shinho.bean.UserContactEntity">
+		insert into C_MEMBER_CONTACT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			row_id,
+			<if test="customerId != null and customerId != ''">
+				member_id,
+			</if>
+			<if test="isMainAddress != null">
+				type_flag,
+			</if>
+			<if test="address != null and address != ''">
+				addr,
+			</if>
+			<if test="province != null and province != ''">
+				provincename,
+			</if>
+			<if test="city != null and city != ''">
+				cityname,
+			</if>
+			<if test="county != null and county != ''">
+				countyname,
+			</if>
+			<if test="contactsName != null and contactsName != ''">
+				name,
+			</if>
+			<if test="contactsTelephone != null and contactsTelephone != ''">
+				tel,
+			</if>
+			<if test="contactsType != null">
+				type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			<if test="customerId != null and customerId != ''">
+				#{customerId,jdbcType=VARCHAR},
+			</if>
+			<if test="isMainAddress != null">
+				#{isMainAddress,jdbcType=INTEGER},
+			</if>
+			<if test="address != null and address != ''">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null and province != ''">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null and city != ''">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="county != null and county != ''">
+				#{county,jdbcType=VARCHAR},
+			</if>
+			<if test="contactsName != null and contactsName != ''">
+				#{contactsName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactsTelephone != null and contactsTelephone != ''">
+				#{contactsTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="contactsType != null">
+				#{contactsType,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 删除记录 -->
+	<delete id="delete" parameterType="Object">
+		delete from c_member_contact
+		where row_id = #{id}
+	</delete>
+
+	<!-- 根据id，修改记录 -->
+	<update id="update" parameterType="com.hoperun.shinho.bean.UserContactEntity">
+		update C_MEMBER_CONTACT set
+		name=#{contactsName},
+		tel=#{contactsTelephone},
+		addr=#{address},
+		provincename=#{province},
+		cityname=#{city},
+		countyname=#{county},
+		type=#{contactsType}
+		where
+		row_id=#{id}
+	</update>
+
+	<!-- 修改当前用户的所有默认收货地址为否 -->
+	<update id="eraseMainAddress" parameterType="Object">
+		update
+		C_MEMBER_CONTACT set
+		type_flag='0'
+		where member_id=#{customerId}
+	</update>
+
+	<!-- 根据id，设置对应记录为默认收货地址 -->
+	<update id="setMainAddress" parameterType="Object">
+		update
+		C_MEMBER_CONTACT set
+		type_flag='1'
+		where row_id=#{id}
+	</update>
+
+	<!-- 根据id查询 系统用户 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Info_Column_List" />
+		from C_MEMBER_CONTACT a, C_MEMBER b 
+        where a.member_id = b.member_id
+        AND a.row_id = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据id查询用户指定收货地址 -->
+	<select id="queryDefaultContact" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from C_MEMBER_CONTACT where type_flag = 1
+		and member_id = #{customerId,jdbcType=VARCHAR}
+		order by insdt
+	</select>
+
+	<!-- 根据id查询 系统用户 -->
+	<select id="queryByCustomerId" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from C_MEMBER_CONTACT
+		where
+		member_id = #{customerId,jdbcType=VARCHAR}
+		order by insdt
+	</select>
+
+	<!-- 根据id查询 系统用户 -->
+	<select id="queryAll" resultMap="BaseResultMap" parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		from C_MEMBER_CONTACT
+	</select>
+</mapper>

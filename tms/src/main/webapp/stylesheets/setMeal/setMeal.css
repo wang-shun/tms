@@ -1,0 +1,67 @@
+.search-term-div{
+	position: relative;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+.lable_style{
+	float:left;
+	height:30px;
+	line-height:30px;
+	text-align:left;
+	margin-right: 10px;
+}
+
+.input_style1{
+	float:left;
+	width:15%;
+	margin-right: 15px;
+}
+
+.ope-btn{
+	margin:0px 5px 0px 0px;
+}
+
+.ope-btn2{
+	margin:0px 5px 0px 20px;
+}
+
+.sear-result-div{
+	float: left;
+	width: 100%;
+}
+
+.ope-btn1{
+	display: inline-block;
+	height: 20px;
+	padding: 0px 8px;
+	margin: 0px 5px;
+	color: white;
+	line-height: 20px;
+}
+
+.modify-a{
+	background-color: #1E7DB9;
+
+}
+
+.delete-btn{
+	background-color:#D15A46;
+}
+
+.modify-a{
+	text-decoration: none;
+}
+
+table a:hover{
+	color: white;
+	text-decoration: none;
+}
+
+td{
+	text-align: center;
+}
+
+th{
+	text-align: center;
+}

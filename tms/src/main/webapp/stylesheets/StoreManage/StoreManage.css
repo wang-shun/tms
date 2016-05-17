@@ -1,0 +1,178 @@
+#div1 div {
+	display: none;
+}
+.juzhong {
+	left: 50% !important;
+	margin-left: -400px;
+}
+.top-btn1 {
+	margin: 4px 0;
+}
+
+.top-btn2{
+  
+  background: #87B97E;
+  border: #87B97E;
+  text-decoration: none;
+  color: white !important
+
+}
+.top-btn3 {
+	 text-decoration: none;
+}
+.top-btn4 {
+	margin: 13px ;
+}
+.top {
+height: 40px;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+.input_style1 {
+float: left;
+width: 15%;
+}
+.input_style2 {
+margin: 4px;
+}
+.input_style3 {
+float: left;
+width: 57%;
+}
+.container-page {
+display: -moz-box; /* Firefox */
+display: -webkit-box; /* Safari and Chrome */
+display: box;
+width: 100%;
+height: 100%;
+background: white;
+}
+.sideL {
+width: 200px;
+}
+.sideR {
+-moz-box-flex: 9; /* Firefox */
+-webkit-box-flex: 9; /* Safari and Chrome */
+box-flex: 9;
+}
+.sideL-last {
+display: block !important;
+margin-left: 35%;
+margin-top: 10%;
+}
+.sideL-last2 {
+display: block !important;
+margin-left: 43%;
+margin-top: 10%;
+}
+.table th, .table td {
+text-align: center;
+}
+.required {
+color: red;
+margin: 8px 6px;
+float: left;
+}
+.required2 {
+position: relative;
+color: red;
+margin:8px 6px;
+float: left;
+z-index: -1024;
+}
+.choose {
+margin: 6px;
+}
+.footer {
+margin-top: 0px !important;
+}
+.dialog_style {
+width: 900px;
+height: 400px
+}
+.dialog_style .input_style {
+float: left;
+width: 100%
+}
+.dialog_style .lable_style {
+float: left;
+width: 12%;
+height: 34px;
+line-height: 34px;
+margin: 0 15px 15px 20px;
+text-align: center
+}
+.lable_style2{
+	float: left;
+    padding-right: 10px;
+    height: 34px;
+    line-height: 34px;
+    margin: 0 15px 15px 13px;
+    text-align: left;
+}
+.dialog_style .radio_style {
+height: 34px;
+line-height: 34px
+}
+.dialog_style .dropbox_style {
+float: left;
+width: 30%
+}
+.dialog_style .dropbox_text {
+width: 100%;
+text-align: left
+}
+.dialog_style .dropbox_bnt {
+position: absolute;
+top: 15px;
+right: 10px
+}
+.dialog_style .datepicker_style {
+float: left;
+width: 30%;
+text-align: left
+}
+.select_width_100_style {
+width: 100%;
+height: 40px
+}
+.input_search_style {
+float: left;
+width: 30%;
+margin: 0 0 10px 0
+}
+.bnt_search {
+float: left;
+margin: 0 0 10px 20px
+}
+.tableAreaScroll {
+max-height: 240px;
+overflow-y: scroll
+}
+td {
+text-align: center
+}
+.alert-info {
+color: #fff
+}
+.alert-info th {
+background: #0f59bd;
+color: #fff
+}
+.form-group {
+overflow: hidden
+}
+.panel-info {
+margin: 10px;
+border: 0
+}
+
+.frame_bottom {
+margin-bottom: 10x;
+height: 90%
+}
+.scrollTabble {
+max-height: 600px;
+overflow-y: scroll;
+overflow-x: auto
+}

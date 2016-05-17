@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byType">
+	<!-- Annotation Config <context:annotation-config /> -->
+	<!-- 扫描Service -->
+	<context:component-scan base-package="com.hoperun" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>com.hoperun.framework.errorMessages</value>
+		</property>
+	</bean>
+
+	<!-- ***************配置数据源************** -->
+	<bean id="dataSourceMaster" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<!-- MySQL Connection Info <property name="driverClassName" value="com.mysql.jdbc.Driver" 
+			/> <property name="url" value="jdbc:mysql://localhost:3306/yiyagbk?useUnicode=true&amp;charaterEncoding=utf8 
+			" /> <property name="username" value="root" /> <property name="password" 
+			value="root" /> -->
+		<!-- Oracle Connection Info <property name="url" value="jdbc:oracle:thin:@121.40.96.123:1521/mir" 
+			/> <property name="username" value="portal" /> <property name="password" 
+			value="portal" /> <property name="url" value="jdbc:oracle:thin:@10.20.13.35:1521:xhdb" 
+			/> <property name="username" value="xhrp" /> <property name="password" value="xhrp" 
+			/> -->
+
+		<!-- Oracle Connection Info -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@121.43.174.163:1521/shrp" />
+		<property name="username" value="portal" />
+		<property name="password" value="portal" />
+		<!-- Connection Pooling Info -->
+		<property name="defaultAutoCommit" value="false" />
+		<!-- 连接Idle一个小时后超时 -->
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="minEvictableIdleTimeMillis" value="3600000" />
+	</bean>
+
+	<bean id="dataSourceSlave" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<!-- MySQL Connection Info <property name="driverClassName" value="com.mysql.jdbc.Driver" 
+			/> <property name="url" value="jdbc:mysql://localhost:3306/yiyagbk?useUnicode=true&amp;charaterEncoding=utf8 
+			" /> <property name="username" value="root" /> <property name="password" 
+			value="root" /> -->
+		<!-- Oracle Connection Info -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@121.43.174.163:1521/shrp" />
+		<property name="username" value="portal" />
+		<property name="password" value="portal" />
+
+		<!-- Connection Pooling Info -->
+		<property name="defaultAutoCommit" value="false" />
+		<!-- 连接Idle一个小时后超时 -->
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="minEvictableIdleTimeMillis" value="3600000" />
+	</bean>
+
+	<bean id="dataSource" class="com.hoperun.framework.db.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="master" value-ref="dataSourceMaster"></entry>
+				<entry key="slave" value-ref="dataSourceSlave"></entry>
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSourceMaster" />
+	</bean>
+
+	<!-- ***************配置数据源************** <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName"> <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value> 
+		</property> <property name="url"> <value>jdbc:sqlserver://10.20.107.228:1433;DatabaseName=suyuan</value> 
+		</property> <property name="username"> <value>sa</value> </property> <property 
+		name="password"> <value>root123</value> </property> </bean> -->
+	<!-- ***************事务配置************** -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<aop:config>
+		<aop:advisor pointcut="execution(* com.hoperun.*.service.*.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config>
+
+	<!-- 配置数据库注解aop -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<bean id="multiDataSourceAspect" class="com.hoperun.framework.db.DataSourceAspect" />
+	<aop:config>
+		<aop:aspect id="c" ref="multiDataSourceAspect">
+			<aop:pointcut id="tx"
+				expression="execution(* com.hoperun.*.mapper.*.*(..))" />
+			<aop:before pointcut-ref="tx" method="before" />
+		</aop:aspect>
+	</aop:config>
+	<!-- 配置数据库注解aop -->
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="load*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- MyBatis Sql -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+
+	<!-- 扫描mapper.java -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		autowire="byName">
+		<property name="basePackage" value="com.hoperun" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- Spring 工具类 -->
+	<bean id="springContextUtil" class="com.hoperun.framework.utils.SpringContextUtil" />
+
+</beans>
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css?2">
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../stylesheets/public.css">
+</head>
+<body class="frame_body">
+
+<div class="modal-header">
+    <h5 class="modal-title">
+        <b>配送单</b>
+    </h5>
+</div>
+<div class="modal-body" id="detail">
+
+   <div class="tms_modal_group" title="运单信息">
+       <div style="width: 50%;float: left">
+           <div class="tms_modal_row">
+               <label class="tms_lable_style4">配送单号：</label>
+               <label class="tms_lable_style5" id="deliveryBillNoDetl" name="deliveryBillNoDetl"></label>
+           </div>
+           <div class="tms_modal_row">
+               <label class="tms_lable_style4">配送开始时间：</label>
+               <label class="tms_lable_style5" id="createdAtDetl" name="createdAtDetl"></label>
+           </div>
+           <div class="tms_modal_row">
+               <label class="tms_lable_style4">车牌号：</label>
+               <label class="tms_lable_style5" id="vNoDetl" name="vNoDetl"></label>
+           </div>
+           <div class="tms_modal_row">
+               <label class="tms_lable_style4">司机：</label>
+               <label class="tms_lable_style5" id="dNameDetl" name="dNameDetl"></label>
+           </div>
+           <div class="tms_modal_row">
+               <label class="tms_lable_style4">配送起始点：</label>
+               <label class="tms_lable_style5" id="deliveryOriginDetl" name="deliveryOriginDetl"></label>
+           </div>
+           <div class="tms_modal_row">
+               <label class="tms_lable_style4">配送目的地：</label>
+               <label class="tms_lable_style5" id="deliveryTermDetl" name="deliveryTermDetl"></label>
+           </div>
+       </div>
+       <div class="text-right" style="width: 50%;float: left">
+            <img id="billqr" >
+       </div>
+   </div>
+
+    <div class="tms_modal_group_bottom">
+        <label class="tms_lable_titile">运单列表：</label>
+        <table id="bill" class="table table-bordered">
+            <tr>
+                <td>序号</td><td>运单号</td><td>集散地</td><td>配送时间</td><td>备注</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("TransportationExecution/distributionbill")
+</script>
+
+</body>
+</html>

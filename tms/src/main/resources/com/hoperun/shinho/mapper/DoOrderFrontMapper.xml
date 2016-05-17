@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.DoOrderFrontMapper">
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="com.hoperun.shinho.bean.DoOrderFrontEntity">
+		<id column="id" property="id" javaType="java.lang.String" />
+		<result column="vbeln" property="vbeln" />
+		<result column="member_id" property="customer_id" />
+		<result column="member_name" property="customer_name" />
+		<result column="linkman" property="linkman" />
+		<result column="linktel" property="linktel" />
+		<result column="erdat" property="erdat" />
+		<result column="sale_type" property="sale_type" />
+		<result column="do_type" property="do_type" />
+		<result column="status" property="status" />
+		<result column="source" property="source" />
+		<result column="gross_amt" property="gross_amt" />
+		<result column="pay_actual_amt" property="pay_actual_amt" />
+        <result column="shdate_time" property="shdate_time" />
+		<result column="shdat" property="shdat" />
+		<result column="addr" property="addr" />
+		<result column="remark" property="remark" />
+		<result column="insdt" property="insdt" javaType="java.util.Date" />
+		<result column="pay_status" property="pay_status" />
+		<result column="pay_status_code" property="pay_status_code" />
+		<result column="pay_type" property="pay_type" />
+		<result column="pay_app_id" property="pay_app_id" />
+		<result column="pay_name" property="pay_name" />
+		<result column="pay_transaction_no" property="pay_transaction_no" />
+		<result column="step_id" property="step_id" />
+		<result column="order_call_flag" property="order_call_flag" />
+		<result column="pay_call_flag" property="pay_call_flag" />
+		<result column="points_amount" property="points_amount" />
+		<result column="provincename" property="provincename" />
+		<result column="cityname" property="cityname" />
+		<result column="countyname" property="countyname" />
+		<result column="do_status" property="do_status" />
+		<result column="do_vbeln" property="do_vbeln" />
+		<result column="do_msg" property="do_msg" />
+        <result column="is_invoice" property="is_invoice" />
+        <result column="invoice_head" property="invoice_head" />
+	</resultMap>
+
+
+	<!-- table all fields -->
+	<sql id="Base_Column_List">
+		id,vbeln,member_id,member_name,linkman,linktel,erdat,sale_type,do_type,status,source,
+		gross_amt,pay_actual_amt,shdate_time,shdat,addr,provincename,cityname,countyname,remark,insdt,
+		pay_status,pay_status_code,pay_type,pay_app_id,pay_name,pay_transaction_no,
+		step_id,order_call_flag,pay_call_flag,points_amount,do_status,do_vbeln,do_msg
+	</sql>
+
+	<sql id="Base_Column_List_join_ORDER">
+		f.id,f.vbeln,f.member_id,f.member_name,f.linkman,f.linktel,f.erdat,f.sale_type,f.do_type,f.status,f.source,
+		o.gross_amt,f.pay_actual_amt,f.shdate_time,f.shdat,f.addr,f.provincename,f.cityname,f.countyname,f.remark,f.insdt,
+		f.pay_status,f.pay_status_code,f.pay_type,f.pay_app_id,f.pay_name,f.pay_transaction_no,
+		f.step_id,f.order_call_flag,f.pay_call_flag,f.points_amount,f.do_status,f.do_vbeln,f.do_msg
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != 0">
+				and id = #{id, javaType="java.lang.String"}
+			</if>
+		</trim>
+	</sql>
+
+	<!-- 根据参数插入订单 -->
+	<insert id="insertBySelective" parameterType="com.hoperun.shinho.bean.DoOrderFrontEntity">
+		insert into TEMP_ORDER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="vbeln != null and vbeln != ''">
+				vbeln,
+			</if>
+			<if test="customer_id != null and customer_id != ''">
+				member_id,
+			</if>
+			<if test="customer_name != null and customer_name != ''">
+				member_name,
+			</if>
+			<if test="linkman != null and linkman != ''">
+				linkman,
+			</if>
+			<if test="linktel != null and linktel != ''">
+				linktel,
+			</if>
+			<if test="erdat != null and erdat != ''">
+				erdat,
+			</if>
+			<if test="sale_type != null and sale_type != ''">
+				sale_type,
+			</if>
+			<if test="do_type != null and do_type != ''">
+				do_type,
+			</if>
+			<if test="status != null and status != ''">
+				status,
+			</if>
+			<if test="source != null and source != ''">
+				source,
+			</if>
+			<if test="gross_amt != null and gross_amt != ''">
+				gross_amt,
+			</if>
+            <if test="shdate_time != null and shdate_time != ''">
+                shdate_time,
+            </if>
+			<if test="shdat != null and shdat != ''">
+				shdat,
+			</if>
+			<if test="addr != null and addr != ''">
+				addr,
+			</if>
+			<if test="remark != null and remark != ''">
+				remark,
+			</if>
+			insdt,
+			<if test="pay_status != null and pay_status != ''">
+				pay_status,
+			</if>
+			<if test="pay_status_code != null and pay_status_code != ''">
+				pay_status_code,
+			</if>
+			<if test="pay_type != null and pay_type != ''">
+				pay_type,
+			</if>
+			<if test="pay_app_id != null and pay_app_id != ''">
+				pay_app_id,
+			</if>
+			<if test="pay_name != null and pay_name != ''">
+				pay_name,
+			</if>
+			<if test="pay_transaction_no != null and pay_transaction_no != ''">
+				pay_transaction_no,
+			</if>
+			<if test="step_id != null and step_id != ''">
+				step_id,
+			</if>
+			<if test="order_call_flag != null and order_call_flag != ''">
+				order_call_flag,
+			</if>
+			<if test="pay_call_flag != null and pay_call_flag != ''">
+				pay_call_flag,
+			</if>
+			<if test="points_amount != null and points_amount != ''">
+				points_amount,
+			</if>
+			<if test="do_status != null and do_status != ''">
+				do_status,
+			</if>
+			<if test="do_vbeln != null and do_vbeln != ''">
+				do_vbeln,
+			</if>
+			<if test="do_msg != null and do_msg != ''">
+				do_msg,
+			</if>
+			<if test="provincename != null and provincename != ''">
+				provincename,
+			</if>
+			<if test="cityname != null and cityname != ''">
+				cityname,
+			</if>
+			<if test="countyname != null and countyname != ''">
+				countyname,
+			</if>
+            <if test="is_invoice != null and is_invoice != ''">
+                is_invoice,
+            </if>
+            <if test="invoice_head != null and invoice_head != ''">
+                invoice_head,
+            </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=NUMERIC},
+			<if test="vbeln != null and vbeln != ''">
+				#{vbeln,jdbcType=VARCHAR},
+			</if>
+			<if test="customer_id != null and customer_id != ''">
+				#{customer_id,jdbcType=VARCHAR},
+			</if>
+			<if test="customer_name != null and customer_name != ''">
+				#{customer_name,jdbcType=VARCHAR},
+			</if>
+			<if test="linkman != null and linkman != ''">
+				#{linkman,jdbcType=VARCHAR},
+			</if>
+			<if test="linktel != null and linktel != ''">
+				#{linktel,jdbcType=VARCHAR},
+			</if>
+			<if test="erdat != null and erdat != ''">
+				sysdate,
+			</if>
+			<if test="sale_type != null and sale_type != ''">
+				#{sale_type,jdbcType=VARCHAR},
+			</if>
+			<if test="do_type != null and do_type != ''">
+				#{do_type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null and status != ''">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null and source != ''">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="gross_amt != null and gross_amt != ''">
+				#{gross_amt,jdbcType=VARCHAR},
+			</if>
+            <if test="shdate_time != null and shdate_time != ''">
+                #{shdate_time,jdbcType=VARCHAR},
+            </if>
+			<if test="shdat != null and shdat != ''">
+				#{shdat,jdbcType=DATE},
+			</if>
+			<if test="addr != null and addr != ''">
+				#{addr,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null and remark != ''">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			sysdate,
+			<if test="pay_status != null and pay_status != ''">
+				#{pay_status,jdbcType=VARCHAR},
+			</if>
+			<if test="pay_status_code != null and pay_status_code != ''">
+				#{pay_status_code,jdbcType=VARCHAR},
+			</if>
+			<if test="pay_type != null and pay_type != ''">
+				#{pay_type,jdbcType=VARCHAR},
+			</if>
+			<if test="pay_app_id != null and pay_app_id != ''">
+				#{pay_app_id,jdbcType=VARCHAR},
+			</if>
+			<if test="pay_name != null and pay_name != ''">
+				#{pay_name,jdbcType=VARCHAR},
+			</if>
+			<if test="pay_transaction_no != null and pay_transaction_no != ''">
+				#{pay_transaction_no,jdbcType=VARCHAR},
+			</if>
+			<if test="step_id != null and step_id != ''">
+				#{step_id,jdbcType=VARCHAR},
+			</if>
+			<if test="order_call_flag != null and order_call_flag != ''">
+				#{order_call_flag,jdbcType=VARCHAR},
+			</if>
+			<if test="pay_call_flag != null and pay_call_flag != ''">
+				#{pay_call_flag,jdbcType=VARCHAR},
+			</if>
+			<if test="points_amount != null and points_amount != ''">
+				#{points_amount,jdbcType=VARCHAR},
+			</if>
+			<if test="do_status != null and do_status != ''">
+				#{do_status,jdbcType=VARCHAR},
+			</if>
+			<if test="do_vbeln != null and do_vbeln != ''">
+				#{do_vbeln,jdbcType=VARCHAR},
+			</if>
+			<if test="do_msg != null and do_msg != ''">
+				#{do_msg,jdbcType=VARCHAR},
+			</if>
+			<if test="provincename != null and provincename != ''">
+				#{provincename,jdbcType=VARCHAR},
+			</if>
+			<if test="cityname != null and cityname != ''">
+				#{cityname,jdbcType=VARCHAR},
+			</if>
+			<if test="countyname != null and countyname != ''">
+				#{countyname,jdbcType=VARCHAR},
+			</if>
+            <if test="is_invoice != null and is_invoice != ''">
+                #{is_invoice,jdbcType=VARCHAR},
+            </if>
+            <if test="invoice_head != null and invoice_head != ''">
+                #{invoice_head,jdbcType=VARCHAR},
+            </if>
+		</trim>
+	</insert>
+
+
+	<!-- 根据id，修改支付信息 -->
+	<update id="updatePayParam" parameterType="com.hoperun.shinho.bean.DoOrderFrontEntity">
+		update TEMP_ORDER
+		set
+		PAY_APP_ID=#{pay_app_id,jdbcType=VARCHAR}
+		,PAY_NAME=#{pay_name,jdbcType=VARCHAR}
+		,PAY_TRANSACTION_NO=#{id}
+		where
+		id=#{id}
+	</update>
+
+	<!-- 根据id，设置支付成功状态 -->
+	<update id="updatePaySuccessful" parameterType="Object">
+		update
+		TEMP_ORDER
+		set PAY_STATUS='已支付' ,PAY_STATUS_CODE='1'
+		where
+		id=#{id}
+	</update>
+
+	<!-- 根据id，设置订单成功状态 -->
+	<update id="updateSuccessful" parameterType="Object">
+		update
+		TEMP_ORDER set
+		STATUS='80'
+		where
+		id=#{id}
+	</update>
+
+	<!-- 生成订单，CALL后端存储过程成功 -->
+	<update id="updateCallSuccessfulForCreateOrder" parameterType="Object">
+		update TEMP_ORDER set ORDER_CALL_FLAG='1' where id=#{id}
+	</update>
+
+	<!-- 支付成功，CALL后端存储过程成功 -->
+	<update id="updateCallSuccessfulForPay" parameterType="Object">
+		update
+		TEMP_ORDER set PAY_CALL_FLAG='1' where id=#{id}
+	</update>
+
+	<!-- 根据id查询 销售订单 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List_join_ORDER" />
+		from TEMP_ORDER f left join PORTAL_R.DO_ORDER o
+		on f.do_vbeln =o.vbeln
+		where f.id = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据customerId查询 订单 -->
+	<select id="queryByCustomer" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List_join_ORDER" />
+		from TEMP_ORDER f left join PORTAL_R.DO_ORDER o
+		on f.do_vbeln = o.vbeln
+		where customer_id = #{id}
+	</select>
+
+	<!-- 根据stepId查询 订单 -->
+	<select id="queryByStepId" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		*
+		from TEMP_ORDER f
+		where f.step_id = #{step_id}
+	</select>
+
+	<!-- 根据DoVbeln查询 订单 -->
+	<select id="queryByDoVbeln" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		*
+		from TEMP_ORDER f
+		where f.do_vbeln = #{do_vbeln}
+	</select>
+
+	<!-- 关单 -->
+	<select id="cancelOrder" statementType="CALLABLE" parameterType="java.util.Map">
+		{call
+		PR_EC_DO_CANCEL(#{V_VBELN,mode=IN,jdbcType=VARCHAR},#{V_REMARK,mode=IN,jdbcType=VARCHAR},#{V_USERID,mode=IN,jdbcType=VARCHAR},#{V_OU_RETURN,mode=OUT,jdbcType=VARCHAR},#{V_OU_MSG,mode=OUT,jdbcType=VARCHAR})}
+	</select>
+
+	<!-- 支付成功 -->
+	<select id="payStatus" statementType="CALLABLE" parameterType="java.util.Map">
+		{call
+		PR_EC_PAY_STATUS(#{V_VBELN,mode=IN,jdbcType=VARCHAR},#{V_PAY_ACTUAL_AMT,mode=IN,jdbcType=DOUBLE},#{V_PAY_TYPE,mode=IN,jdbcType=VARCHAR},#{V_USERID,mode=IN,jdbcType=VARCHAR},#{V_OU_RETURN,mode=OUT,jdbcType=VARCHAR},#{V_OU_MSG,mode=OUT,jdbcType=VARCHAR})}
+	</select>
+
+	<!-- 创建订单 -->
+	<select id="createDo" statementType="CALLABLE" parameterType="java.util.Map">
+		{call
+		PR_EC_DO_CREATE(#{V_VBELN,mode=IN,jdbcType=VARCHAR},#{V_OU_RETURN,mode=OUT,jdbcType=VARCHAR},#{V_OU_MSG,mode=OUT,jdbcType=VARCHAR},#{V_OU_NUMBER,mode=OUT,jdbcType=VARCHAR})}
+	</select>
+</mapper>

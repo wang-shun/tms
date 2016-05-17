@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.DoOrderMapper">
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="com.hoperun.shinho.bean.DoOrderEntity">
+		<id column="vbeln" property="vbeln" javaType="java.lang.String" />
+		<result column="pay_type" property="payType" javaType="java.lang.String" />
+		<result column="do_type" property="doType" />
+		<result column="sale_type" property="saleType" />
+		<result column="r_type" property="deliverable" />
+		<result column="gross_amt" property="amount" />
+		<result column="pay_status" property="payStatus" />
+		<result column="status" property="status" javaType="java.lang.String" />
+        <result column="status_name" property="statusName" javaType="java.lang.String" />
+		<result column="id" property="id" />
+		<result column="insdt" property="createTime" />
+		<result column="count" property="dnCount"/>
+        <result column="coupon_money" property="couponMoney"/>
+	</resultMap>
+
+	<!-- sys_user table all fields -->
+	<sql id="Base_Column_List">
+    a.vbeln,a.sale_type,a.do_type,a.gross_amt,a.points_amount,a.status,b.status_name,a.r_type,a.pay_type,a.pay_status,a.insdt,c.id, a.coupon_money
+	</sql>
+
+	<sql id="Query_By_Customer_Id">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        portal_r.do_order a
+        JOIN temp_order c
+        ON 
+        a.vbeln = c.do_vbeln
+        and
+        a.source = 'C_STORE'
+        AND
+        c.source = a.source
+        JOIN
+        portal_r.base_bill_status b
+        ON
+        a.status = b.auditing
+        AND
+        b.code = 'DO'
+        AND
+        b.channel = 'C_STORE'
+        WHERE 
+        a.kunnr = #{id}
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+		</trim>
+	</sql>
+
+	<!-- 根据id查询 销售订单明细 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="Object">
+		SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        portal_r.do_order a
+        JOIN temp_order c
+        ON 
+        a.vbeln = c.do_vbeln
+        and
+        a.source = 'C_STORE'
+        AND
+        c.source = a.source
+        JOIN
+        portal_r.base_bill_status b
+        ON
+        a.status = b.auditing
+        AND
+        b.code = 'DO'
+        AND
+        b.channel = 'C_STORE'
+        WHERE 
+        c.id = #{id}
+	</select>
+
+	<!-- 根据销售订单id查询 销售订单明细 -->
+	<select id="queryByCustomerId" resultMap="BaseResultMap"
+        parameterType="Object">
+        <include refid="Query_By_Customer_Id" />
+        AND
+        (a.status = '10' or a.status = '20' 
+        or a.status = '30' or a.status = '40' 
+        or a.status = '41' or a.status = '50'
+        or a.status = '60' or a.status = '80')
+        order by a.vbeln desc
+	</select>
+
+	<!-- 根据销售订单id查询 待付款销售订单明细 -->
+	<select id="queryNoPayOrder"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        <include refid="Query_By_Customer_Id" />
+        AND
+        a.status = '10'
+        AND
+        a.sale_type = '80001'
+        AND
+        a.pay_type = '90003'
+        order by a.VBELN desc
+	</select>
+
+	<!-- 根据销售订单id查询 待收货销售订单明细 -->
+	<select id="queryNoReceiveOrder"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        <include refid="Query_By_Customer_Id" />
+        AND
+        (a.status = '20' or a.status = '30' or a.status = '40' or a.status = '41' or a.status = '50')
+        ORDER BY a.VBELN desc
+	</select>
+
+	<!-- 根据销售订单id查询 已完成销售订单明细 -->
+	<select id="queryCompletedOrder"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        <include refid="Query_By_Customer_Id" />
+        AND
+        (a.status = '60' OR a.status = '80')
+        ORDER BY a.VBELN desc
+	</select>
+    
+    
+    <!-- 根据用户查询 订单个数 -->
+    <select
+        id="queryOrderCount"
+        resultType="java.lang.Integer"
+        parameterType="Object">
+        SELECT
+        count(1) from portal_r.do_order
+        WHERE
+        kunnr = #{customerId}
+        AND
+        source = 'C_STORE'
+    </select>
+
+    <!-- 根据用户查询 订单个数 -->
+    <select
+        id="queryNoPayOrderCount"
+        resultType="java.lang.Integer"
+        parameterType="Object">
+        SELECT
+        count(1) from portal_r.do_order
+        WHERE
+        sale_type = '80001'
+        AND
+        pay_type = '90003'
+        AND
+        status = '10'
+        AND
+        source = 'C_STORE'
+        AND
+        kunnr = #{customerId}
+    </select>
+
+    <!-- 根据用户查询 订单个数 -->
+    <select
+        id="queryNoReceiveOrderCount"
+        resultType="java.lang.Integer"
+        parameterType="Object">
+        SELECT
+        count(1) from portal_r.do_order
+        WHERE
+        (status = '20' or status = '30' or status = '40' or status = '41' or status = '50')
+        AND
+        source = 'C_STORE'
+        AND
+        kunnr = #{customerId}
+    </select>
+
+    <!-- 根据订单查询 收货单个数 -->
+    <select
+        id="queryDNCountByDO"
+        resultType="java.lang.Integer"
+        parameterType="Object">
+        SELECT count(1)
+        FROM
+        portal_r.do_order a, portal_r.dn_order b
+        WHERE
+        a.vbeln = b.do_vbeln
+        AND source = 'C_STORE'
+        AND a.vbeln = #{id}
+    </select>
+</mapper>

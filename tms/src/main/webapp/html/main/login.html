@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/main/main.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms_login.css">
+    <title>一米物流管理-TMS系统</title>
+</head>
+<body>
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 col-sm-offset-6 text-center">
+                    <h1><strong>一米物流管理-TMS系统</strong></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5 col-sm-offset-6 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>系统登录</h3>
+                            <p>请输入用户名密码:</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form role="form" action="" method="post" class="login-form">
+                            <div class="form-group">
+                                <label class="sr-only" for="name">Username</label>
+                                <input id="name" type="text" name="form-username" placeholder="用户名..."
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="pass">Password</label>
+                                <input id="pass" type="password" name="form-password" placeholder="密码..."
+                                       class="form-control">
+                            </div>
+                            <button id="sign" type="button" class="btn btn-info tms_button">登录</button>
+                            <span id="sign_mess" style="visibility:hidden;color:red">错误</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("main/login-action")
+</script>
+</html>

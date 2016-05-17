@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hoperun.tms.mapper.authority.RoleMenuMapper">
+
+	<resultMap type="com.hoperun.tms.bean.authority.RoleMenu" id="RoleMenuResultMap">
+		<id column="id" property="id" />
+		<result column="menu_id" property="menu_id" />
+		<result column="role_id" property="role_id" />
+	</resultMap>
+
+	<sql id="allColumnFields">
+	      id,menu_id,role_id
+ 	</sql>	
+ 	
+ 	<sql id="MybatisCmsRoleMenu_dynamic_where_fields"><!-- xml转义字符需要 <![CDATA[   ]]> 标签-->
+		<where>
+			<if test="id != null  and id != '' "> AND id=#{id} </if>
+			<if test="menu_id != null  and menu_id != '' "> AND menu_id = #{menu_id} </if>
+			<if test="role_id != null  and role_id != '' "> AND role_id = #{role_id} </if>
+		</where>
+ 	</sql>
+
+
+
+	<select id="getRoleMenuList" parameterType="com.hoperun.tms.bean.authority.RoleMenu" resultMap="RoleMenuResultMap">
+		SELECT
+			<include refid="allColumnFields" />
+		from tms_role_menu p
+			<include refid="MybatisCmsRoleMenu_dynamic_where_fields"></include>
+		order by id
+	</select>
+	
+	<select id="getRoleMenuByIds" parameterType="com.hoperun.tms.bean.authority.RoleMenu" resultMap="RoleMenuResultMap">
+		SELECT
+			<include refid="allColumnFields" />
+		from tms_role_menu p where role_id in 
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+			  #{item}  
+			 </foreach>
+		order by id
+	</select>
+	
+	<delete id="delRoleMenuById">
+		delete from tms_role_menu 
+		where 
+			role_id = #{role_id}
+	</delete>
+	
+	
+	<insert id="insertRolemenuList" parameterType="java.util.List">
+		INSERT  INTO tms_role_menu (
+		id,
+				menu_id,
+				role_id
+		)	select seq_tms_role_menu_id.NEXTVAL,A.* from(
+		<foreach collection="list" item="item" index="index" separator="union all">
+		   SELECT #{item.menu_id},#{item.role_id} from dual
+    	</foreach>
+    	) A
+	</insert>
+ 	
+</mapper>

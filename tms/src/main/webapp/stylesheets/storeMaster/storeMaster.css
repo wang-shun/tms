@@ -1,0 +1,16 @@
+.storeMaster-page{
+
+	display: -moz-box; 
+    display: -webkit-box; 
+    display: box; 
+}
+.sm-left{
+	width:200px;
+    background: #fff;
+}
+.sm-right{
+	-moz-box-flex: 9; 
+    -webkit-box-flex: 9; 
+    box-flex: 9;
+    background: #fff;
+}

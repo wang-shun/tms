@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css" >
+    <link rel="stylesheet" href="../../javascripts/ztree/css/zTreeStyle/zTreeStyle.css">
+	
+	</head>	
+	
+            
+         
+<body > 
+	<div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" 
+               aria-hidden="true">×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+            </h4>
+         </div>
+    <section class="content">
+    <div class="col-xs-12">
+    	<div class="row">
+    		<div class="col-md-5">
+    		<div  class="box-body">
+    		<form role="form" onsubmit="return false;">
+    			 <div class="form-group">
+                      <label>角色名称</label>
+                      <input type="text" id="roleName" class="form-control" value="">
+                    </div>
+                </form>
+    		</div>
+    		</div>
+    		<div class="col-md-7">
+    			<ul id="treeDemo" class="ztree"></ul>
+    		</div>
+    		
+    	</div>
+    	</div>
+    </section>
+	
+	 <div class="modal-footer">
+	 		<button type="button" class="btn  bg-olive" id="saverm">
+             		  提交更改
+            </button>
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭
+            </button>
+        
+         </div>
+</body>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("authority/js/rolemenu.tree.manage.js")
+</script>
+</html>

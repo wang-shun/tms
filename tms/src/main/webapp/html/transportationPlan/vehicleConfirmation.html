@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css?version=0.1.1">
+    <link rel="stylesheet" type="../../stylesheets/main/ace.min.css?version=0.1.1">
+    <link rel="stylesheet" type="../../stylesheets/main/bootstrap-so.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css">
+
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css?0820">
+    <link rel="stylesheet" href="../../stylesheets/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/public.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/metroStyle/metroStyle.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/Pager.css?version=0.1.1">
+    <title>派车确认</title>
+
+</head>
+<body>
+<div class="tms_body">
+    <div class="col-xs-3">
+        <label class="tms_lable_style1">车牌号</label>
+        <div class="input-group">
+            <input type="text" class="form-control tms_input_style2" id="vNo" name="vNo"/>
+            <div class="input-group-btn">
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <label class="tms_lable_style1">司机姓名</label>
+        <div class="input-group">
+            <input type="text" class="form-control tms_input_style2" id="dName" name="dName">
+            <div class="input-group-btn">
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="button_lable">
+        <button type="button" id="query" class="btn btn-info tms_button">
+            <i class="fa fa-search"></i>&nbsp&nbsp查&nbsp&nbsp询
+        </button>
+    </div>
+
+    <div class="tms_row">
+        <label class="tms_lable_style2">运单状态</label>
+        <div class="tms_checkbox_col">
+            <a class="clear_button btn-info" href="javascript:;" id="clearStatus">不限</a>
+            <label><input type="checkbox" value="00" name="statusGroup">新建</label>
+            <label><input type="checkbox" value="10" name="statusGroup">确认</label>
+            <label><input type="checkbox" value="20" name="statusGroup">在途</label>
+            <label><input type="checkbox" value="30" name="statusGroup">到达</label>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div class="jqGrid_wrapper">
+            <table id="table_list_1"></table>
+            <div id="pager_list_1"></div>
+        </div>
+    </div>
+</div>
+</body>
+
+<input id="modalId" type="hidden">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 710px; padding:15px">
+        <div class="modal-content" style="height:890px;">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("TransportationExecution/deliveryBill")
+</script>
+
+
+</html>

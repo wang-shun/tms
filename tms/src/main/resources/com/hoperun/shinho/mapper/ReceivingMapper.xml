@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.ReceivingMapper">
+    <!-- Result Map -->
+    <resultMap
+        id="BaseResultMap"
+        type="com.hoperun.shinho.bean.ReceivingEntity">
+        <id
+            column="vbeln"
+            property="vbeln" />
+        <result
+            column="maktx"
+            property="maktx" />
+        <result
+            column="b_i_count"
+            property="b_i_count" />
+        <result
+            column="b_y_count"
+            property="b_y_count" />
+        <result
+            column="a_i_count"
+            property="a_i_count" />
+        <result
+            column="min_price"
+            property="min_price"
+            javaType="java.lang.Float" />
+        <result
+            column="unit_name"
+            property="unit_name" />
+        <result
+            column="a_hx_price"
+            property="a_hx_price"
+            javaType="java.lang.Float" />
+        <result
+            column="umrez"
+            property="umrez" />
+        <result
+            column="g_price"
+            property="g_price"
+            javaType="java.lang.Float" />
+        <result
+            column="matnr"
+            property="matnr" />
+        <result
+            column="do_posnr"
+            property="do_posnr" />
+        <result
+            column="posnr"
+            property="posnr" />
+        <result
+            column="pay_type"
+            property="pay_type" />
+        <result
+            column="pay_status"
+            property="pay_status" />
+        <result
+            column="status"
+            property="status" />
+        <result
+            column="r_type"
+            property="r_type" />
+    </resultMap>
+
+    <!-- table all fields -->
+    <sql id="Base_Column_List">
+        B.VBELN orderVbeln,B.MAKTX maktx,
+        B.I_COUNT b_i_count, B.Y_COUNT b_y_count,B.I_COUNT
+        a_i_count,B.HX_PRICE min_price,E.UNIT_NAME unit_name,B.HX_PRICE
+        a_hx_price,B.UMREZ umrez,B.G_PRICE g_price,B.MATNR matnr, B.POSNR
+        do_posnr, B.POSNR posnr,F.PAY_TYPE pay_type,F.PAY_STATUS
+        pay_status,F.STATUS status,f.r_type
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        where 1=1
+        <trim suffixOverrides=",">
+            <if test="id != null and id != 0">
+                and id = #{id, javaType="java.lang.String"}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 根据id查询 销售订单 4000322022 -->
+    <select
+        id="queryListByCustomerId"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from
+        PORTAL_R.DO_ORDER_ITEM B,
+        C_MEMBER D,C_SKU_LIST E,
+        PORTAL_R.DO_ORDER F
+        where
+        E.MATNR=B.MATNR
+        AND D.MEMBER_ID=F.KUNNR
+        AND( F.STATUS='20' OR F.STATUS='30' OR F.STATUS = '40' OR F.STATUS='41')
+        AND F.VBELN=B.VBELN
+        AND D.MEMBER_ID = #{customerId,jdbcType=VARCHAR}
+        order by
+        B.VBELN,B.POSNR
+    </select>
+
+    <!-- 根据id查询 销售订单 4000322022 -->
+    <select
+        id="queryListByCustomerIdAndVbeln"
+        resultMap="BaseResultMap"
+        parameterType="com.hoperun.shinho.bean.ReceivingEntity">
+        select
+        <include refid="Base_Column_List" />
+        from
+        PORTAL_R.DO_ORDER_ITEM B,
+        C_MEMBER D,C_SKU_LIST E,
+        PORTAL_R.DO_ORDER F
+        where
+        E.MATNR=B.MATNR
+        AND D.MEMBER_ID=F.KUNNR
+        AND( F.STATUS='20' OR F.STATUS='30' OR F.STATUS = '40' OR F.STATUS='41')
+        AND F.VBELN=B.VBELN
+        AND E.GEO_ID = '2619'
+        AND D.MEMBER_ID = #{customerId,jdbcType=VARCHAR}
+        AND F.VBELN = #{dnVbeln,jdbcType=VARCHAR}
+        order by
+        B.VBELN,B.POSNR
+    </select>
+
+
+    <!-- 根据id查询 销售订单 4000322022 -->
+    <select
+        id="queryListByDoVbeln"
+        resultMap="BaseResultMap"
+        parameterType="com.hoperun.shinho.bean.ReceivingEntity">
+        select
+        <include refid="Base_Column_List" />
+        from
+        PORTAL_R.DO_ORDER_ITEM B,
+        C_MEMBER D,C_SKU_LIST E,
+        PORTAL_R.DO_ORDER F
+        where
+        E.MATNR=B.MATNR
+        AND D.MEMBER_ID=F.KUNNR
+        AND( F.STATUS='20' OR F.STATUS='30' OR F.STATUS = '40' OR F.STATUS='41')
+        AND F.VBELN=B.VBELN
+        AND E.GEO_ID = '2619'
+        AND F.VBELN = #{dnVbeln,jdbcType=VARCHAR}
+        order by
+        B.VBELN,B.POSNR
+    </select>
+
+
+    <!-- 根据id查询 销售订单 4000322022 -->
+    <select
+        id="queryDidByVbeln"
+        resultType="java.lang.String"
+        parameterType="java.lang.String">
+        select t.did from PORTAL_R.DO_ORDER t where t.vbeln = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 根据id查询 销售订单 4000322022 -->
+    <select
+        id="queryReceivingByKey"
+        resultMap="BaseResultMap"
+        parameterType="com.hoperun.shinho.bean.ReceivingEntity">
+        select
+        <include refid="Base_Column_List" />
+        from
+        PORTAL_R.DO_ORDER_ITEM B,
+        C_MEMBER D,C_SKU_LIST E,
+        PORTAL_R.DO_ORDER F
+        where
+        E.MATNR=B.MATNR
+        AND D.MEMBER_ID=F.KUNNR
+        AND( F.STATUS='20' OR F.STATUS='30' OR F.STATUS = '40' OR F.STATUS='41')
+        AND F.VBELN=B.VBELN
+        AND E.GEO_ID = '2619'
+        AND F.VBELN = #{dnVbeln,jdbcType=VARCHAR}
+        AND B.POSNR = #{posnr,jdbcType=VARCHAR}
+        AND B.MATNR = #{matnr,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 根据id查询 -->
+    <select
+        id="queryOrderCount"
+        resultType="java.lang.Integer"
+        parameterType="Object">
+        select count(1)
+        from
+        portal_r.do_order
+        where
+        status = '20'
+        and
+        kunnr = #{customerId}
+    </select>
+
+    <select
+        id="ctpShareStatus"
+        statementType="CALLABLE"
+        parameterType="java.util.Map">
+        {call
+        portal_r.CTP_SHARE_STATUS(#{V_VBELN,mode=IN,jdbcType=VARCHAR},#{V_NAME,mode=IN,jdbcType=VARCHAR},#{V_STATUS,mode=IN,jdbcType=VARCHAR},#{V_MSG,mode=IN,jdbcType=VARCHAR},#{V_OU_RETURN,mode=OUT,jdbcType=VARCHAR},#{V_OU_MSG,mode=OUT,jdbcType=VARCHAR})}
+        </select>
+
+    <select
+        id="doSt"
+        statementType="CALLABLE"
+        parameterType="java.util.Map">
+        {call
+        PR_EC_DO_ST(#{V_VBELN,mode=IN,jdbcType=VARCHAR},#{V_USERID,mode=IN,jdbcType=VARCHAR},#{V_DID,mode=IN,jdbcType=VARCHAR},#{V_OU_RETURN,mode=OUT,jdbcType=VARCHAR},#{V_OU_MSG,mode=OUT,jdbcType=VARCHAR})}
+    </select>
+</mapper>

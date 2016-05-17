@@ -1,0 +1,391 @@
+@charset "utf-8";
+/* 此文件定义项目上公共样式，具体定此如下:
+    1、定义展示的文字大小，例如：.h1 .h2 .h3 .h4 .h5分别代于5种大小的字号，其它页面如果涉及字号的设定，请引用此CSS中给定的样式
+    2、body背景
+    3、表单元素默认样式，input、select、checkbox、radio。
+    
+    注：本CSS只允许引用public-images文件夹中的图片资源。
+*/body,
+html {
+
+  margin: 0;
+  padding: 0;
+}
+a,
+button,
+textarea {
+  border: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.noscroll::-webkit-scrollbar {
+  background: rgba(0, 0, 0, 0);
+  width: 0;
+}
+.noscroll::-webkit-scrollbar-button {
+  background: rgba(0, 0, 0, 0);
+  width: 0;
+}
+.noscroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+  width: 0;
+}
+.noscroll::-webkit-scrollbar-track-piece {
+  background: rgba(0, 0, 0, 0);
+  width: 0;
+}
+.noscroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0);
+  width: 0;
+}
+.noscroll::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+  width: 0;
+}
+.noscroll::-webkit-scrollbar-resizer {
+  background: rgba(0, 0, 0, 0);
+  width: 0;
+}
+body {
+  scrollbar-3dlight-color: rgba(0, 0, 0, 0);
+  scrollbar-highlight-color: rgba(0, 0, 0, 0);
+  scrollbar-face-color: rgba(0, 0, 0, 0);
+  scrollbar-arrow-color: rgba(0, 0, 0, 0);
+  scrollbar-shadow-color: rgba(0, 0, 0, 0);
+  scrollbar-dark-shadow-color: rgba(0, 0, 0, 0);
+  scrollbar-base-color: rgba(0, 0, 0, 0);
+  scrollbar-track-color: rgba(0, 0, 0, 0);
+  font-size: 12px;
+  font-family: "Microsoft YaHei";
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Microsoft YaHei";
+  list-style: none;
+  text-decoration: none;
+  font-weight: normal;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+html {
+  font-size: 100%;
+  overflow-y: auto;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+html,
+body {
+
+  margin: 0;
+  padding: 0;
+}
+b,
+strong {
+  font-weight: bold;
+}
+ul,
+ol {
+  list-style: none;
+}
+i {
+  font-style: normal;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+.font_title {
+  font-size: 36px;
+}
+.font_content {
+  font-size: 30px;
+}
+.font_memo {
+  font-size: 24px;
+}
+#warp {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 320px;
+  margin: 0 auto;
+}
+.clear {
+  clear: both;
+}
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+  .font_title {
+    font-size: 18px;
+  }
+  .font_content {
+    font-size: 15px;
+  }
+  .font_memo {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .font_title {
+    font-size: 15px;
+  }
+  .font_content {
+    font-size: 12px;
+  }
+  .font_memo {
+    font-size: 10px;
+  }
+}
+input {
+  border: 0;
+  outline: none;
+}
+.crm-loading-background {
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.crm-loading-background .loading-icon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+.ui-input-text {
+  display: inline;
+}
+/*---------------*/
+.white_ask_cancleQueue_view {
+  position: absolute;
+  background-color: white;
+  height: 180px;
+  top: 100px;
+  left: 20px;
+  right: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.askCancle_text {
+  position: relative;
+  top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+.tips_askText {
+  position: relative;
+  top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #7c7c7c;
+  font-size: 15px;
+}
+.ok_or_cancle_askCanclePaihao {
+  position: absolute;
+  bottom: 0px;
+  height: 46px;
+  width: 100%;
+}
+.cancle_paihao_queue_ask {
+  position: relative;
+  float: left;
+  width: 50%;
+  border-top: 2px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  height: 100%;
+  color: blue;
+}
+.textCancle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 10px;
+  font-size: 16px;
+}
+.ok_paihao_queue_ask {
+  position: absolute;
+  border-top: 2px solid #ccc;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  color: blue;
+}
+.textOK_ask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 10px;
+  font-size: 16px;
+}
+.backHalfAlphaView {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 199;
+}
+/*通用foot*/
+.wb-foot-common{
+  background:#fff;
+  border-top:1px solid #ececec;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width:100%;
+  height: 50px;
+ -moz-box-shadow: inset 0 2px 8px #ececec;            
+-webkit-box-shadow:inset 0 2px 8px #ececec;         
+box-shadow:inset 0 2px 8px #ececec;   
+}
+.wb-foot-ul{
+  width:100%;
+  height: 50px;
+  padding:5px 10px;
+  text-align: center;
+  display: -moz-box; 
+  display: -webkit-box; 
+  display: box; 
+}
+.wb-foot-ul li{
+  display: inline-box;
+
+  -moz-box-flex:1.0; /* Firefox */
+  -webkit-box-flex:1.0; /* Safari 和 Chrome */
+  box-flex:1.0;
+  text-align: center;
+  position:relative;
+}
+.foot-num{
+	position: absolute;
+	right:10px;
+	top:0;
+	padding:2px;
+	height: 22px;
+	line-height: 18px;
+	min-width: 22px;
+	max-width: 100px;
+	text-align: center;
+	background: #F25756;
+	color: #fff;
+	border-radius: 22px;
+}
+.wb-foot-ul li p{
+  color: #707070;
+}
+.wb-foot-ul li img{
+  width:23px;
+}
+.wb-foot-ul li.wb-li-on p{
+  color: #f04e3a;
+}
+/*弹出框阴影*/
+.pop-shadow {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+.cont-box {
+  width: 80%;
+  height: 70%;
+  background: #fff;
+  border-radius: 10px;
+  position: fixed;
+  left: 10%;
+  top: 15%;
+  z-index: 1000;
+}
+.close-icon {
+  position: absolute;
+  right: 0;
+  top: -40px;
+  width: 24px;
+}
+@-webkit-keyframes hidden {
+  0%,
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    left: -42%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -42%;
+  }
+}
+.none-back-area {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left:0;
+  top:0;
+  background: #fff;
+  display: none;
+}
+.none-back-area .none-center-area {
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+.none-back-area .none-center-area .none-icon {
+  width: 116px;
+  height: 116px;
+  margin-top: 30%;
+}
+.none-back-area .none-center-area .none-tip {
+  display: block;
+  color: #484848;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/*省-市-区css开始*/
+.choose-area{width:84%;height:80%;margin:20% 8% auto;background:#fff;position:absolute;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px}.choose-area .area-title{width:100%;height:50px;background:#f04d3a;-moz-border-radius-topleft:10px;-moz-border-radius-topright:10px;-webkit-border-top-left-radius:10px;-webkit-border-top-right-radius:10px;border-top-left-radius:10px;border-top-right-radius:10px;text-align:center}.choose-area .area-title .title-text{color:#fff;font-size:20px;line-height:50px}.choose-area .area-title .button-close{background:url(../../images/close.png) center no-repeat;background-size:30px 30px;width:50px;height:50px;display:block;right:-10px}.choose-area .area-body .area-input{font-size:14px;color:#8b8b8b;line-height:45px;padding-left:15px;padding-right:15px;background:#fff;width:100%}.choose-area .area-body .area-line{border:0;height:1px;margin-left:10px;margin-right:10px;background:#e2e2e2}.choose-area .area-body .area-list{overflow-y:auto;height:90%;width:100%;position:absolute;-moz-border-radius-bottomleft:10px;-moz-border-radius-bottomright:10px;-webkit-border-bottom-left-radius:10px;-webkit-border-bottom-right-radius:10px;border-bottom-right-radius:10px;border-bottom-left-radius:10px}.choose-area .area-body .area-list .area-name{font-size:16px;color:#484848;line-height:45px;padding-left:15px;padding-right:15px;background:#fff;width:100%}
+/*省-市-区css结束*/
+

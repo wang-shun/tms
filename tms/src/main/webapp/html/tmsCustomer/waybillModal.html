@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运单详情界面</title>
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css?3">
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../stylesheets/public.css">
+</head>
+<body class="frame_body">
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"
+            aria-hidden="true">×
+    </button>
+    <h5 class="modal-title">
+        <b>运单号：</b><b class="tms_keyText" id="noDetl" name="noDetl"></b>
+    </h5>
+</div>
+<div class="modal-body" id="detail">
+    <div class="tms_modal_group" title="运单信息">
+        <input class="form-control tms_input_style1" type="hidden" id="idDetl" name="idDetl">
+        <input class="form-control tms_input_style1" type="hidden" id="rIdDetl" name="idDetl">
+
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">面单号：</label>
+            <label class="tms_lable_style8" id="ticketNoDetl" name="ticketNoDetl"></label>
+            <label class="tms_lable_style4">客户订单号：</label>
+            <label class="tms_lable_style8" id="orderNoDetl" name="orderNoDetl"></label>
+        </div>
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">订单来源：</label>
+            <label class="tms_lable_style5" id="sourceDetl" name="sourceDetl"></label>
+            <label class="tms_lable_style4">揽件人：</label>
+            <label class="tms_lable_style5" id="recipientDetl" name="recipientDetl"></label>
+            <label class="tms_lable_style4">运输方式：</label>
+            <label class="tms_lable_style5" id="deliveryTypeDetl" name="deliveryTypeDetl"></label>
+        </div>
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">揽件时间：</label>
+            <label class="tms_lable_style5" id="receiveAtDetl" name="receiveAtDetl"></label>
+            <label class="tms_lable_style4">配送日期：</label>
+            <label class="tms_lable_style5" id="deliveryDateDetl" name="deliveryDateDetl"></label>
+            <label class="tms_lable_style4">时间段：</label>
+            <label class="tms_lable_style5" id="deliveryTimeDetl" name="deliveryTimeDetl"></label>
+        </div>
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">备注：</label>
+            <label class="tms_lable_style6" id="remarkDetl" name="remarkDetl"></label>
+        </div>
+    </div>
+
+    <div class="tms_modal_group">
+        <label class="tms_lable_titile">发货方：</label>
+        <label class="tms_lable_titile" id="dNameDetl" name="dNameDetl"></label>
+
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">发货人：</label>
+            <label class="tms_lable_style5" id="dContactDetl" name="dContactDetl"></label>
+            <label class="tms_lable_style4">联系电话：</label>
+            <label class="tms_lable_style5" id="dTelDetl" name="dTelDetl"></label>
+            <label class="tms_lable_style4">发货点：</label>
+            <label class="tms_lable_style5" id="dPointDetl" name="dPointDetl"></label>
+        </div>
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">发货地址：</label>
+            <label class="tms_lable_style6" id="dAddressDetl" name="dAddressDetl"></label>
+        </div>
+    </div>
+
+    <div class="tms_modal_group">
+        <label class="tms_lable_titile">收货方：</label>
+        <label class="tms_lable_titile" id="rNameDetl" name="rNameDetl"></label>
+
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">收货人：</label>
+            <label class="tms_lable_style5" id="rContactDetl" name="rContactDetl"></label>
+            <label class="tms_lable_style4">联系电话：</label>
+            <label class="tms_lable_style5" id="rTelDetl" name="rTelDetl"></label>
+        </div>
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">收货地址：</label>
+            <label class="tms_lable_style6" id="rAddressDetl" name="rAddressDetl"></label>
+        </div>
+    </div>
+
+    <div class="tms_modal_group" title="运单明细">
+        <label class="tms_lable_titile">运单明细：</label>
+
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">物品名称：</label>
+            <label class="tms_lable_style5" id="detailNameDetl" name="detailNameDetl"></label>
+            <label class="tms_lable_style4">重量(kg)：</label>
+            <label class="tms_lable_style5" id="detailWeightDetl" name="detailWeightDetl"></label>
+            <label class="tms_lable_style4">体积(cm³)：</label>
+            <label class="tms_lable_style5" id="detailSizeDetl" name="detailSizeDetl"></label>
+        </div>
+    </div>
+
+    <div class="tms_modal_group_bottom" title="计费方式">
+        <label class="tms_lable_titile">运单明细：</label>
+
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">计费方式：</label>
+            <label class="tms_lable_style5" id="feeTypeDetl" name="feeTypeDetl"></label>
+            <label class="tms_lable_style4">结算方式：</label>
+            <label class="tms_lable_style5" id="payTypeDetl" name="payTypeDetl"></label>
+        </div>
+        <div class="tms_modal_row">
+            <label class="tms_lable_style4">运费(元)：</label>
+            <label class="tms_lable_style5" id="transprotFeeDetl" name="transprotFeeDetl"></label>
+            <label class="tms_lable_style4">代收款(元)：</label>
+            <label class="tms_lable_style5" id="goodMoneyDetl" name="goodMoneyDetl"></label>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("tmsCustomer/waybillModal")
+</script>
+
+</body>
+</html>

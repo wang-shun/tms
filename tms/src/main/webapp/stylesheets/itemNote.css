@@ -1,0 +1,28 @@
+@import url(public.css); 
+
+.storeMaster-page{
+}
+
+.sm-right{
+
+    background: #fff;
+}
+.item-note-add{
+	margin:10px 0;
+}
+.item-note-txtarea{
+	margin:5px 0;
+	resize:none;
+}
+
+.ite-edit-btn{
+	background: #6FB3E0 !important;
+	border-color: #6FB3E0 !important;
+	border-radius: 3px;
+}
+.ite-delet-btn{
+	background: #D15B47 !important;
+	border-color: #D15B47 !important;
+	border-radius: 3px;
+}
+

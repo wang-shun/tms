@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css?0820">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css" >
+    <link rel="stylesheet" href="../../stylesheets/public.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/metroStyle/metroStyle.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/Pager.css?version=0.1.1">
+
+    <title>收货方地址导入</title>
+
+</head>
+<body class="frame_body">
+
+<div class="tms_body">
+    <div >
+     	<label class="tms_lable_style1">收货方地址</label>
+     	<form  id="upload" enctype="multipart/form-data" action="../../receiver/receiverUpload" method="POST" >
+        <label class="col-sm-4 control-label"><input class="btn btn-default" id="excel_file" type="file" name="fileBuildInfo"  accept="xls"/></label>
+        <button  class="btn btn-info tms_button" type="button" value="导入数据" id="checkForm"><i class="fa fa-upload"></i>&nbsp&nbsp导入数据</button> 
+            
+         </form>
+        <button href="#" class="btn btn-info tms_button" id="downTemplate">
+            <i class="fa fa-download"></i>&nbsp&nbsp下载模板
+        </button>
+        
+    </div>
+    <div class="ibox-content">
+        <div class="jqGrid_wrapper">
+            <table id="table_list_1"></table>
+            <div id="pager_list_1"></div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+  seajs.use("tmsbase/receiver")
+</script>
+
+</html>

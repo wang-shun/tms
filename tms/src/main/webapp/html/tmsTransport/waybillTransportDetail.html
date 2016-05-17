@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运单跟踪</title>
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap-so.css">
+    <link rel="stylesheet" href="../../stylesheets/main/font-awesome.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/orderStatus.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css?version=0.1.1">
+    <link rel="stylesheet" href="../../stylesheets/public.css">
+</head>
+<body>
+<form name="waybillInfo" method="post">
+    <div class="tms_body">
+        <label class="tms_lable_title2">运单号：</label>
+        <label class="tms_lable_title2" id="id" name="id" hidden="true"></label>
+        <label class="tms_lable_title2" id="no" name="no"></label>
+        <div class="tms_group" title="运单状态">
+            <div class="order_status_inner order-process">
+                <div class="order-status-wrapper">
+                    <div class="order-status-process">
+                        <span class="status-process" id="status-process" style="width: 0px"></span>
+                        <div class="order-status-text status-on" id="status0" style="width:25%; left:-12.5%">
+                            <h5>运单确认</h5>
+                            <span class="point"></span>
+                            <p id="status0_d"></p>
+                            <p id="status0_t"></p>
+                        </div>
+                        <div class="order-status-text" id="status1" style="width:25%; left:12.5%">
+                            <h5>大车接单</h5>
+                            <span class="point"></span>
+                            <p id="status1_d"></p>
+                            <p id="status1_t"></p>
+                        </div>
+                        <!-- <div class="order-status-text" id="status2" style="width:25%; left:27.5%">
+                            <h5>生成配送单</h5> <span class="point"></span>
+                            <p id="status2_d"></p>
+                            <p id="status2_t"></p>
+                        </div> -->
+                        <div class="order-status-text" id="status2" style="width:25%; left:37.5%">
+                            <h5>大车下车确认</h5> <span class="point"></span>
+                            <p id="status3_d"></p>
+                            <p id="status3_t"></p>
+                        </div>
+                        <div class="order-status-text" id="status3" style="width:25%; left:62.5%">
+                            <h5>小车接单</h5> <span class="point"></span>
+                            <p id="status4_d"></p>
+                            <p id="status4_t"></p>
+                        </div>
+                        <div class="order-status-text status-last" id="status4" style="width:25%; left:87.5%">
+                            <h5>签收确认</h5> <span class="point"></span>
+                            <p id="status5_d"></p>
+                            <p id="status5_t"></p>
+                        </div>
+                        <div class="order-status-text  status-last " id="status90"
+                             style="display:none; width:25%; left:87.5%">
+                            <h5>运单作废</h5> <span class="point"></span>
+                            <p id="status90_d"></p>
+                            <p id="status90_t"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>大车信息</h5>
+                    </div>
+                    <div class="ibox-content no-padding">
+                        <ul class="list-group" id=bigCar>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>小车信息&签收信息</h5>
+                    </div>
+                    <div class="ibox-content no-padding">
+                        <ul class="list-group" id="smallCar">
+                        </ul>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>运单当前位置</h5>
+                    </div>
+                    <div id="map">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>运单跟踪</h5>
+                    </div>
+                    <div class="ibox-content timeline" id="waybillInfoDetail">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+    seajs.use("tmsTransport/waybillTransportDetail")
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+.search-term-div{
+	position: relative;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+.input_style1{
+	float:left;
+	width:15%;
+	margin-right: 15px;
+	}
+
+.input_style2{
+	float:left;
+	width:30%
+	}
+
+.ope-btn-div{
+	float: left;
+	text-align:left;
+	width: 100%;
+	padding: 15px 0px 15px 0px;
+}
+
+.ope-btn1{
+	margin:0px 5px 0px 0px;
+	background-color:#F0AD4E;
+	border-color:#F0AD4E;
+	margin-left: 20px;
+}
+
+.ope-btn2{
+	margin:0px 5px 0px 0px;
+	background-color:#5CB85C;
+	border-color:#5CB85C;
+}
+
+.ope-btn3{
+	margin:0px 5px 0px 0px;
+	background-color:#5BC0DE;
+	border-color:#5BC0DE;
+}
+
+.sear-result-div{
+	float: left;
+	width: 100%;
+}
+
+.result-table{
+	width: 100%;
+}
+
+td{
+	text-align: center;
+}
+
+th{
+	text-align: center;
+}
+
+.ope-btn{
+	display: inline-block;
+	height: 20px;
+	padding: 0px 8px;
+	margin: 0px 5px;
+	color: white;
+	line-height: 20px;
+}
+
+.modify-btn{
+	background-color: #1E7DB9;	
+}
+
+.state-btn{
+	background-color: #1E7CB9;
+}
+
+.state-btn2{
+	background-color: #979797;
+}
+
+.delete-btn{
+	background-color:#D15A46;
+}
+
+.bindrole-btn{
+	background-color: #5CB85C;
+}
+.pop-center{
+	left:50% !important;
+	margin-left:-450px
+}
+
+.bindrole-div{
+	width: 100%;
+	float: left;
+	padding: 15px 15px 10px 15px;
+	height: 300px;
+	overflow: auto;
+}
+
+.bindrole-table{
+	width: 100%;
+}
+
+.row1{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.required{
+	color:red;
+	margin:10px 6px;
+	float:left
+}
+
+.required-hide{
+	position:relative;
+	color:white;
+	margin:8px 6px;
+	float:left;
+	z-index:-99
+}
+
+.sex-span{
+	float:left;
+	width:4%;
+	height:34px;
+	line-height:34px;
+	text-align:center
+}
+
+input[type="radio"].sex-radio{
+	position:relative;
+	float:left;
+	margin-top:10px
+}
+.span-style{
+	float:left;
+	width:10%;
+	height:34px;
+	line-height:34px;
+	text-align:center
+}
+
+.remark{
+	float: left;
+	width: 30%;
+}
+
+.btn-save{
+	border-color:#5BC0DE;
+	background-color:#5BC0DE;
+	color: white;
+	margin-right: 10px;
+}
+
+.btn-cancel{
+	border-color:#F0AD4E;
+	background-color:#F0AD4E;
+	color: white;
+}
+
+.btn-reset{
+	border-color: #5CB85C;
+	background-color: #5CB85C;
+	margin-right: 10px;
+	color: white;
+}
+
+.footer{
+	text-align: right;
+	padding: 19px 20px 20px;
+    margin-top: 15px;
+}
+
+.dialog_style{
+	width:900px
+}
+
+.lable_style{
+	float:left;
+	height:30px;
+	line-height:30px;
+	text-align:left;
+	margin-right: 10px;
+}
+

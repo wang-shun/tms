@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.UserMapper">
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="com.hoperun.shinho.bean.UserEntity">
+		<id column="member_id" property="customerId" />
+		<result column="name" property="name" />
+		<result column="nick_name" property="nick_name" />
+		<result column="real_name" property="real_name" />
+		<result column="head_img" property="head_img" />
+		<result column="level_id" property="level_id" />
+		<result column="level_name" property="level_name" />
+		<result column="emp_id" property="emp_id" />
+		<result column="open_id" property="openId" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+		<result column="group_id" property="group_id" />
+		<result column="remark" property="remark" />
+		<result column="phone" property="tel" />
+		<result column="mobile_phone" property="mobile_phone" />
+		<result column="question" property="question" />
+		<result column="answer" property="answer" />
+		<result column="sex" property="sex" />
+		<result column="birthday" property="birthday" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="county" property="district" />
+		<result column="geo_id" property="geo_id" javaType="java.lang.Integer" />
+		<result column="status" property="status" />
+		<result column="update_dt" property="update_dt" />
+		<result column="last_date" property="last_date" />
+		<result column="insdt" property="insdt" />
+	</resultMap>
+
+	<!-- sys_user table all fields -->
+	<sql id="Base_Column_List">
+		m.member_id,m.name,m.nick_name,m.real_name,m.type_id,m.head_img,l.level_name,m.level_id,m.emp_id,m.open_id,m.password,m.email,m.group_id,m.remark,m.phone,m.mobile_phone,
+		m.question,m.answer,m.sex,m.birthday,m.province,m.city,m.county,m.geo_id,m.status,m.update_dt,m.last_date,m.insdt
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="add" parameterType="Object">
+		insert into C_MEMBER
+		(member_id,
+		<if test="name != null and name != ''">
+			name,
+		</if>
+		<if test="nick_name != null and nick_name != ''">
+			nick_name,
+		</if>
+		<if test="real_name != null and real_name != ''">
+			real_name,
+		</if>
+		<if test="type_id != null and type_id != ''">
+			type_id,
+		</if>
+		<if test="level_id != null and level_id != ''">
+			level_id,
+		</if>
+		<if test="head_img != null and head_img != ''">
+			head_img,
+		</if>
+		<if test="emp_id != null and emp_id != ''">
+			emp_id,
+		</if>
+		<if test="openId != null and openId != ''">
+			open_id,
+		</if>
+		<if test="password != null and password != ''">
+			password,
+		</if>
+		<if test="email != null and email != ''">
+			email,
+		</if>
+		<if test="group_id != null and group_id != ''">
+			group_id,
+		</if>
+		<if test="remark != null and remark != ''">
+			remark,
+		</if>
+		<if test="tel != null and tel != ''">
+			phone,
+		</if>
+		<if test="mobile_phone != null and mobile_phone != ''">
+			mobile_phone,
+		</if>
+		<if test="question != null and question != ''">
+			question,
+		</if>
+		<if test="answer != null and answer != ''">
+			answer,
+		</if>
+		<if test="sex != null and sex != ''">
+			sex,
+		</if>
+		<if test="birthday != null and birthday != ''">
+			birthday,
+		</if>
+		<if test="province != null and province != ''">
+			province,
+		</if>
+		<if test="city != null and city != ''">
+			city,
+		</if>
+		<if test="district != null and district != ''">
+			county,
+		</if>
+
+		<if test="geo_id != null">
+			geo_id,
+		</if>
+		<if test="status != null and status != ''">
+			status,
+		</if>
+		last_date,insdt)
+		values(
+
+		#{customerId},
+		<if test="name != null and name != ''">
+			#{name},
+		</if>
+		<if test="nick_name != null and nick_name != ''">
+			#{nick_name},
+		</if>
+		<if test="real_name != null and real_name != ''">
+			#{real_name},
+		</if>
+		<if test="type_id != null and type_id != ''">
+			#{type_id},
+		</if>
+		<if test="level_id != null and level_id != ''">
+			#{level_id},
+		</if>
+		<if test="head_img != null and head_img != ''">
+			#{head_img},
+		</if>
+		<if test="emp_id != null and emp_id != ''">
+			#{emp_id},
+		</if>
+		<if test="openId != null and openId != ''">
+			#{openId},
+		</if>
+		<if test="password != null and password != ''">
+			#{password},
+		</if>
+		<if test="email != null and email != ''">
+			#{email},
+		</if>
+		<if test="group_id != null and group_id != ''">
+			#{group_id},
+		</if>
+		<if test="remark != null and remark != ''">
+			#{remark},
+		</if>
+		<if test="tel != null and tel != ''">
+			#{tel},
+		</if>
+		<if test="mobile_phone != null and mobile_phone != ''">
+			#{mobile_phone},
+		</if>
+		<if test="question != null and question != ''">
+			#{question},
+		</if>
+		<if test="answer != null and answer != ''">
+			#{answer},
+		</if>
+		<if test="sex != null and sex != ''">
+			#{sex},
+		</if>
+		<if test="birthday != null and birthday != ''">
+			#{birthday},
+		</if>
+		<if test="province != null and province != ''">
+			#{province},
+		</if>
+		<if test="city != null and city != ''">
+			#{city},
+		</if>
+		<if test="district != null and district != ''">
+			#{district},
+		</if>
+
+		<if test="geo_id != null">
+			#{geo_id},
+		</if>
+		<if test="status != null and status != ''">
+			#{status},
+		</if>
+		sysdate,sysdate)
+	</insert>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="customerId != null and customerId != ''">
+				and member_id = #{customerId}
+			</if>
+		</trim>
+	</sql>
+
+	<!-- 根据id，修改密码 -->
+	<update id="update" parameterType="Object">
+		update C_MEMBER set
+        sex=#{sex},
+        birthday=#{birthday},
+        mobile_phone=#{mobile_phone},
+		email=#{email},
+		update_dt=sysdate,
+		last_date=sysdate
+		where
+		member_id=#{customerId}
+	</update>
+	
+	<!-- 根据id，修改密码 -->
+	<update id="updateWXInfo" parameterType="Object">
+		update C_MEMBER set
+		head_img=#{head_img},
+		nick_name=#{nick_name},
+		update_dt=sysdate,
+		last_date=sysdate
+		where
+		member_id=#{customerId}
+	</update>
+	<!-- 根据id，修改密码 -->
+	<update id="updateLastDate" parameterType="Object">
+		update C_MEMBER set
+		last_date=sysdate
+		where
+		member_id = #{customerId}
+	</update>
+
+	<!-- 根据id查询 系统用户 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from C_MEMBER m left join C_MEMBER_LEVEL l on m.level_id =
+		l.level_id
+		where member_id = #{customerId}
+	</select>
+
+	<!-- 根据id查询 系统用户 -->
+	<select id="queryByOpenId" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from C_MEMBER m left join C_MEMBER_LEVEL l on m.level_id =
+		l.level_id
+		where open_id = #{openId}
+	</select>
+
+	<!-- 根据手机号查询用户信息，同时排除当前用户Id，用于判断用户手机号是否唯一 -->
+	<select id="queryByCellPhoneExceptCurrentUser" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from C_MEMBER m left join C_MEMBER_LEVEL l on m.level_id =
+		l.level_id
+		where
+		mobile_phone = #{mobile_phone} and
+		member_id !=
+		#{customerId}
+	</select>
+
+	<!-- 根据手机号查询用户信息 -->
+	<select id="queryByCellPhone" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from C_MEMBER m left join C_MEMBER_LEVEL l on m.level_id =
+		l.level_id
+		where
+		mobile_phone = #{mobile_phone}
+	</select>
+
+	<select id="queryCustomerIdSeq" resultType="java.lang.String"
+		parameterType="Object">
+		select SEQ_CUSTOMER_ID.Nextval from dual
+	</select>
+    
+</mapper>

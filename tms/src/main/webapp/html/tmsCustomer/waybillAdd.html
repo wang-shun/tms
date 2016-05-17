@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>农场运单新增</title>
+    <link rel="stylesheet" href="../../stylesheets/main/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/menuManage/menuManage.css">
+    <link rel="stylesheet" href="../../stylesheets/tms/tms.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/jqgrid/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../../stylesheets/plugins/sweetalert/sweetalert.css" >
+    <link rel="stylesheet" href="../../stylesheets/public.css">
+</head>
+<body class="frame_body">
+<form id="waybillInfo" method="post">
+    <div class="tms_body">
+        <h5>
+            <button type="button" id="waybillList" class="btn btn-link" style="float: right;"
+                    onclick="window.location.href='waybillList.html'">
+                <i class="glyphicon glyphicon-th-list"></i>
+                运单信息
+            </button>
+            运单号：<lable class="tms_keyText" id="no" name="no">（待生成）</lable>
+        </h5>
+        <div class="tms_group" title="运单信息">
+            <div class="tms_row">
+                <input class="form-control tms_input_style1" type="hidden" id="id" name="id">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">面单号 <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="text" id="ticketNo" name="ticketNo">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">订单来源 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="source" name="source">
+                        <option value="2" label="小农"/>
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">客户订单号</label>
+                    <input class="form-control tms_input_style2" type="text" id="orderNo" name="orderNo">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">运输方式 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="deliveryType" name="deliveryType">
+                        <option value="1" label="冷藏"/>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tms_row">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">揽件人 <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="text" id="recipient" name="recipient">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">揽件时间 <red>*</red></label>
+                    <input type="text" class="form-control tms_input_style2" name="receiveAt" id="receiveAt"/>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">配送日期 <red>*</red></label>
+                    <input type="text" class="form-control tms_input_style2" name="deliveryDate" id="deliveryDate"/>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">配送时间段 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="deliveryTime" name="deliveryTime">
+                        <option value="am" label="上午"/>
+                        <option value="pm" label="下午"/>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tms_row">
+                <div class="tms_col_8">
+                    <label class="tms_lable_style2">备注</label>
+                    <textarea class="form-control tms_input_style3" type="textarea" id="remark" name="remark"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <h5><b>发货方信息</b></h5>
+        <div class="tms_group" title="发货方信息">
+            <div class="tms_row">
+                <input type="hidden" id="dId" name="dId">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">发货方 <red>*</red></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control tms_input_style2" id="dName" name="dName">
+                        <div class="input-group-btn">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">发货人 <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="text" id="dContact" name="dContact">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">联系电话 <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="tel" id="dTel" name="dTel">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">发货点 <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="text" id="dPoint" name="dPoint">
+                </div>
+            </div>
+
+            <div class="tms_row">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">省 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="dProvince" name="dProvince">
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">市 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="dCity" name="dCity">
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">区/县 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="dCounty" name="dCounty">
+                        <option value="" label="请选择"/>
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">城区 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="dArea" name="dArea">
+                        <option value="东区" label="东区"/>
+                        <option value="西区" label="西区"/>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tms_row">
+                <label class="tms_lable_style2">发货地址 <red>*</red></label>
+                <input class="form-control tms_input_style3" type="text" id="dAddress" name="dAddress">
+            </div>
+        </div>
+
+        <h5><b>收货方信息</b></h5>
+        <div class="tms_group" title="收货方信息">
+            <div class="tms_row">
+                <input type="hidden" id="rId" name="rId">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">收货方 <red>*</red></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control tms_input_style2" id="rName" name="rName">
+                        <div class="input-group-btn">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">收货人 <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="text" id="rContact" name="rContact">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">联系电话 <red>*</red></label>
+                    <input type="text" class="form-control tms_input_style2" name="rTel" id="rTel"/>
+                </div>
+            </div>
+
+            <div class="tms_row">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">省 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="rProvince" name="rProvince">
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">市 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="rCity" name="rCity">
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">区/县 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="rCounty" name="rCounty">
+                        <option value="" label="请选择"/>
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">城区 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="rArea" name="rArea">
+                        <option value="东区" label="东区"/>
+                        <option value="西区" label="西区"/>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tms_row">
+                <label class="tms_lable_style2">收货地址 <red>*</red></label>
+                <input class="form-control tms_input_style3" type="text" id="rAddress" name="rAddress">
+            </div>
+        </div>
+        <h5><b>运单明细</b></h5>
+        <div class="tms_group" title="运单明细">
+            <div class="tms_row">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">物品种类 <red>*</red></label>
+                    <select class="form-control tms_input_style2" id="detailType" name="detailType">
+                        <option value="蔬菜" label="蔬菜"/>
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">物品名称 <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="text" id="detailName" name="detailName">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">重量(千克) <red>*</red></label>
+                    <input class="form-control tms_input_style2" type="number" min="0" id="detailWeight" name="detailWeight">
+                    </select>
+                </div>
+                <div class="tms_row"></div>
+                <div class="tms_col_5">
+                    <label class="tms_lable_style2">长</label>
+                    <input class="form-control tms_input_style4" type="number" min="0" id="detailLong" name="detailSize">
+                    <label class="tms_lable_style_44">宽</label>
+                    <input class="form-control tms_input_style4" type="number" min="0" id="detailWidth" name="detailSize">
+                    <label class="tms_lable_style_44">高</label>
+                    <input class="form-control tms_input_style4" type="number" min="0" id="detailHight" name="detailSize">
+                    <label class="tms_lable_style2">单位：(厘米)</label>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <h5><b>计费方式</b></h5>
+        <div class="tms_group" title="计费方式">
+            <div class="tms_row">
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">计费方式</label>
+                    <select class="form-control tms_input_style2" id="feeType" name="feeType">
+                        <option value="1" label="整件"/>
+                        <option value="2" label="重量"/>
+                        <option value="3" label="体积"/>
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">结算方式</label>
+                    <select class="form-control tms_input_style2" id="payType" name="payType">
+                        <option value="1" label="月结"/>
+                        <option value="2" label="现结"/>
+                    </select>
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">运单费用(元)</label>
+                    <input class="form-control tms_input_style2" type="number" min="0" id="transportFee" name="transportFee">
+                </div>
+                <div class="tms_col_4">
+                    <label class="tms_lable_style2">代收货款(元)</label>
+                    <input class="form-control tms_input_style2" type="number" min="0" id="goodMoney" name="goodMoney">
+                </div>
+            </div>
+        </div>
+
+        <div class="tms_group" title="按钮">
+            <div class="button_lable_r">
+                <button type="button" id="saveOrUpdate" class="btn btn-info tms_button"><i class="glyphicon glyphicon-floppy-saved"></i>   保  存</button>
+                <button type="button" id="reset" class="btn btn-info tms_button"><i class="glyphicon glyphicon-floppy-remove"></i>   重 置</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript">
+  seajs.use("tmsCustomer/waybillAdd-action")
+</script>
+</body>
+</html>

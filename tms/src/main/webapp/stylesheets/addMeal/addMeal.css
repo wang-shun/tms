@@ -1,0 +1,263 @@
+
+.required{
+	float: left;
+	margin: 10px 5px 0px 5px;
+	color: red;
+}
+
+td{
+	text-align: center;
+}
+
+th{
+	text-align: center;
+}
+
+.input_style1{
+	float: left;
+	width: 20%;
+}
+
+.num-input{
+	display: inline-block;
+	width:50px;
+	height: 25px;
+}
+
+.span-style{
+	float:left;
+	height:34px;
+	width: 6%;
+	line-height:34px;
+	text-align:left;
+}
+
+.span-style2{
+	float:left;
+	height:34px;
+	width: 7%;
+	line-height:34px;
+	text-align:center;
+}
+
+.group-span1{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	width: 20%;
+	text-align: center;
+	margin-right: 10px;
+}
+
+.group-span2{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	width: 5%;
+	text-align: center;
+}
+
+.group-inpt1{
+	float: left;
+	width: 30%;
+	margin-right: 20px;
+}
+
+.group-inpt2{
+	float: left;
+	width: 15%;
+}
+
+.row1{
+	float: left;
+	width: 100%;
+	padding-bottom:10px;
+}
+
+.row2{
+	float: left;
+	width: 100%;
+}
+
+.row3{
+	padding: 10px 0px 10px 0px;
+	float: left;
+	width: 100%;
+	text-align: left;
+}
+
+.row-center{
+	text-align: left;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+.setmeal-btn{
+	margin:6px 10px 0px 0px;
+}
+
+.addgroup-btn{
+	margin:6px 0px 0px 0px;
+}
+
+.pop-center{
+	left:50% !important;
+	margin-left:-500px
+	}
+
+.modal-body-setMeal{
+	height:550px;
+	overflow: auto;
+}
+
+.setMeal-div{
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.group-info{
+	width: 100%;
+	padding-top: 20px;
+}
+
+.ope-btn{
+	display: inline-block;
+	height: 20px;
+	padding: 0px 8px;
+	margin: 0px 2px;
+	color: white;
+	line-height: 20px;
+}
+
+.setgroup-btn{
+	background-color: #1E7DB9;	
+}
+
+.delgroup-btn{
+	background-color:#D15A46;
+}
+
+.save-btn{
+	border-color:#5BC0DE;
+	background-color:#5BC0DE;
+	color: white;
+	margin-right: 10px;
+}
+
+.back-btn{
+	border-color:#F0AD4E;
+	background-color:#F0AD4E;
+	color: white;
+}
+
+.reset-btn{
+	border-color: #5CB85C;
+	background-color: #5CB85C;
+	margin-right: 10px;
+	color: white;
+}
+
+.make-sure{
+	background-color: #1E7DB9;
+	border-radius: 0px;
+	padding: 0px 8px;
+}
+
+.modal-remove{
+	background-color: #E8643E;
+	border-radius: 0px;
+	padding: 0px 8px;
+}
+
+.btn-danger:hover{
+	color: white;
+	background-color: #E8643E;
+	border-color:#E8643E;
+}
+
+.set-left{
+	margin-top:10px;
+	float: left;
+	width: 48%;
+}
+
+.set-right{
+	margin-top:10px;
+	float: left;
+	width: 48%;
+	height: 350px;
+	margin-left: 20px;
+	overflow: auto;
+}
+
+.choose-table{
+	width:100%;
+}
+
+.detail-table{
+	width:100%;
+}
+
+.detail-div{
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	color: #585F7A;
+	padding-left: 20px;
+	line-height: 40px;
+	background: #EFEFEF;
+}
+
+.footer{
+	text-align: right;
+	padding: 19px 20px 20px;
+}
+
+.modal-span-style{
+	float:left;
+	height:34px;
+	width: 7%;
+	line-height:34px;
+	text-align:right;
+	margin-right: 5px;
+}
+
+.modal-save-btn{
+	border-color:#5BC0DE;
+	background-color:#5BC0DE;
+	color: white;
+	margin-right: 10px;
+}
+
+.modal-cancel-btn{
+	border-color:#F0AD4E;
+	background-color:#F0AD4E;
+	color: white;
+}
+
+.dialog_style{
+	width:1000px;
+}
+
+.page-number,.pgNext{
+	min-width:40px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+
+#pager .pages{
+	overflow:hidden;
+	margin-top:10px
+}
+
+.frame_bottom{
+	margin-bottom:10x;
+	height:90%
+}
+
+.scrollTabble{
+	max-height:600px;
+	overflow-y:scroll;
+	overflow-x:auto
+}

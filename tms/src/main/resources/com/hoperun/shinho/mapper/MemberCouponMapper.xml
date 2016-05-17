@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoperun.shinho.mapper.MemberCouponMapper">
+    <!-- Result Map -->
+    <resultMap
+        id="BaseResultMap"
+        type="com.hoperun.shinho.bean.MemberCouponEntity">
+        <id
+            column="coupon_no"
+            property="couponNO" />
+        <result
+            column="coupon_id"
+            property="couponId" />
+        <result
+            column="coupon_name"
+            property="couponName" />
+        <result
+            column="coupon_class"
+            property="couponClass" />
+        <result
+            column="face_value"
+            property="faceValue" />
+        <result
+            column="member_id"
+            property="memberId" />
+        <result
+            column="status"
+            property="status" />
+          <result
+            column="begin_date"
+            property="beginDate" />  
+            <result
+            column="end_date"
+            property="endDate" />
+    </resultMap>
+
+    <!-- 基础查询元素 -->
+    <sql id="Base_Column_List">
+        a.coupon_no, a.coupon_id, a.coupon_name, a.coupon_class,
+        a.face_value, a.member_id, a.status, a.begin_date, a.end_date
+    </sql>
+
+    <!-- 商品分类的查询条件 -->
+    <sql id="Classify_Where_Clause">
+        where 1=1
+        <trim suffixOverrides=",">
+            <if test="memberId != null and memberId != ''">
+                and a.member_id = #{memberId}
+            </if>
+            <if test="status != null and status != ''">
+                and a.status = #{status}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 根据id查询 系统用户 -->
+    <select
+        id="queryUsableCouponList"
+        resultMap="BaseResultMap"
+        parameterType="com.hoperun.shinho.bean.OrderAccountEntity">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM c_member_coupon a, c_coupon b
+        WHERE
+        a.member_id = #{memberId}
+        AND
+        a.coupon_id = b.coupon_id
+        AND
+        a.begin_date &lt;= sysdate
+        AND
+        a.end_date &gt;= sysdate
+        AND
+        a.status = '10'
+        AND
+        b.state = 'open'
+        AND
+        (b.check_order_money = 'N' or (b.check_order_money = 'Y' and b.check_money &lt;= #{account}))
+        ORDER BY
+        a.face_value desc, a.end_date
+    </select>
+
+    <!-- 根据id查询 系统用户 -->
+    <select
+        id="queryById"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        c_member_coupon a
+        WHERE
+        a.coupon_no = #{couponNO}
+    </select>
+
+    <!-- 根据会员id查询卡券信息（已使用或未使用） -->
+    <select
+        id="queryByList"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        c_member_coupon a
+        WHERE
+        a.member_id = #{memberId}
+        AND
+        a.status = #{status}
+        ORDER BY
+        a.face_value desc, a.end_date
+    </select>
+
+    <!-- 根据会员id查询已使用和未使用的卡券 -->
+    <select
+        id="queryAllByMemberId"
+        resultMap="BaseResultMap"
+        parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        c_member_coupon a
+        WHERE
+        a.member_id = #{memberId}
+        ORDER BY
+        a.face_value desc, a.end_date
+    </select>
+    
+    <!-- 激活未获取的用户卡券，获取新的卡券，在查询卡券列表之前调用 -->
+    <select
+        id="reloadMemberCoupon" statementType="CALLABLE" parameterType="java.util.Map">
+        {call PR_MEMBER_COUPON_CREATE(#{V_MEMBER,mode=IN,jdbcType=VARCHAR},#{V_OU_RETURN,mode=OUT,jdbcType=VARCHAR},#{V_OU_MSG,mode=OUT,jdbcType=VARCHAR})}
+    </select>
+</mapper>
