@@ -23,7 +23,7 @@
 <body>
 <div class="tms_body">
     <div class="col-xs-3">
-        <label class="tms_lable_style1">城区</label>
+        <label class="tms_lable_style1">收货城区</label>
         <div class="input-group">
             <select class="form-control tms_input_style2" id="rArea" name="rArea">
                 <option value="" label="全部"></option>
@@ -42,13 +42,20 @@
             </select>
         </div>
     </div>
+    <div class="tms_row"></div>
+    <div class="col-xs-3">
+        <label class="tms_lable_style1">配送单号</label>
+        <div class="input-group">
+        	<input class="form-control tms_input_style2" type="text" id="deliveryNo" name="deliveryNo">
+        </div>
+    </div>
     <div class="button_lable">
         <button type="button" id="query" class="btn btn-info tms_button">
-            <i class="fa fa-search"></i>&nbsp&nbsp查&nbsp&nbsp询
+            <i class="fa fa-search"></i>&nbsp&nbsp查 询
         </button>
-			<button type="button" id="predistribution"class="btn btn-info tms_button">
-				<i class="fa fa-truck"></i> 预分配
-			</button>
+		<button type="button" id="predistribution"class="btn btn-info tms_button">
+			<i class="fa fa-truck"></i> 预分配
+		</button>
 		</div>
 
     <div class="ibox-content">

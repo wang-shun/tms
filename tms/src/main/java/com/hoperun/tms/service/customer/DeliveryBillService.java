@@ -137,6 +137,27 @@ public class DeliveryBillService {
 			waybillMapper.updateByPrimaryKeySelective(waybill);
 		}
 	}
+	/**
+	 * 取消预分配配送单
+	 * @param 
+	 * @throws Exception 
+	 */
+	public void cancelPredistributionDeliveryBillEx(String[] waybillIds) throws Exception {
+		for (String id : waybillIds) {
+			Waybill waybill = waybillMapper.selectByPrimaryKey(Long.parseLong(id));
+			if(ExWaybill.STATUS_PREDISTRIBUTION.equals(waybill.getStatus())){
+				throw new Exception("运单【"+waybill.getNo()+"】已分配,不能取消。");
+			}
+			if(StringUtil.isEmpty(waybill.getDeliveryNo())){
+				throw new Exception("运单【"+waybill.getNo()+"】不需要撤销。");
+			}
+			waybill.setDeliveryId(Long.valueOf(0));
+			waybill.setDeliveryNo("");
+			waybill.setUpdatedBy(SessionUtils.getUserInfo());
+			waybill.setUpdatedAt(new Date());
+			waybillMapper.updateByPrimaryKeySelective(waybill);
+		}
+	}
 	public DeliveryBill getDeliveryBillById(Long id){
 		DeliveryBill deliveryBill = null;
 		try {
