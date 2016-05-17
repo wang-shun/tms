@@ -1,31 +1,19 @@
 package com.hoperun.tms.controller.transportationPlan;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hoperun.tms.bean.base.DriverExample;
-import com.hoperun.tms.bean.base.VehicleExample;
-import com.hoperun.tms.bean.customer.extend.ExDeliveryBill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hoperun.framework.utils.DateUtil;
 import com.hoperun.framework.utils.HtmlUtil;
 import com.hoperun.framework.utils.StringUtil;
-import com.hoperun.tms.bean.base.Driver;
-import com.hoperun.tms.bean.base.Vehicle;
-import com.hoperun.tms.bean.customer.DeliveryBill;
-import com.hoperun.tms.bean.customer.DeliveryBillTmp;
-import com.hoperun.tms.bean.customer.DeliveryBillTmpExample;
 import com.hoperun.tms.bean.customer.WaybillExample;
 import com.hoperun.tms.bean.customer.WaybillExample.Criteria;
+import com.hoperun.tms.bean.customer.extend.ExDeliveryBill;
 import com.hoperun.tms.bean.customer.extend.ExWaybill;
 import com.hoperun.tms.service.base.DriverService;
 import com.hoperun.tms.service.base.VehicleService;
@@ -54,7 +42,7 @@ public class PredistributionController {
     VehicleService vehicleService;
     
     /**
-     * 派车确认页面
+     * 预分配查询
      * @param request
      * @return
      * @throws Exception
@@ -63,6 +51,7 @@ public class PredistributionController {
     public void query(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String rArea = request.getParameter("rArea");
 		String deliveryStatus = request.getParameter("deliveryStatus");
+		String deliveryNo = request.getParameter("deliveryNo");
 		WaybillExample waybillExample = new WaybillExample();
 		Criteria criteria = waybillExample.createCriteria();
 		if(!StringUtil.isEmpty(rArea)){
@@ -73,7 +62,11 @@ public class PredistributionController {
 		}else if("2".equals(deliveryStatus)){
 			criteria.andDeliveryNoIsNull();
 		}
-		criteria.andStatusEqualTo("10");
+		if(StringUtil.isEmpty(deliveryNo)){
+			criteria.andStatusEqualTo("10");
+		}else{
+			criteria.andDeliveryNoEqualTo(deliveryNo);
+		}
 		waybillExample.setOrderByClause("UPDATED_AT desc");
 		int pageNumber = 1;
 		int pageSize = 10;
@@ -103,9 +96,22 @@ public class PredistributionController {
 	    	HtmlUtil.writerSuccessJson(response,null);
 		} catch (Exception e) {
 			e.printStackTrace();
-			HtmlUtil.writerFailJson(response,e.getMessage());
+			HtmlUtil.writerFailJson(response,"预分配失败，原因："+e.getMessage());
 		}
         
+    }
+    @RequestMapping(value="/cancelPredistribution")
+    public void cancelPredistributionDeliveryBill(HttpServletRequest request,HttpServletResponse response) throws Exception {
+    	try{
+    		String[] ids = request.getParameter("id").split(",");
+    		
+    		deliveryBillService.cancelPredistributionDeliveryBillEx(ids);
+    		HtmlUtil.writerSuccessJson(response,null);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		HtmlUtil.writerFailJson(response,"撤销失败，原因："+e.getMessage());
+    	}
+    	
     }
 
 }
